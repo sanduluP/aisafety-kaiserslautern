@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Safety Kaiserslautern — Local community for safe and beneficial AI</title>
+<meta name="description" content="AI Safety Kaiserslautern is a local community for people who want advanced AI to go well. Reading groups, talks, and meetups in Kaiserslautern, Germany.">
+<meta name="theme-color" content="#12305E">
+<link rel="canonical" href="https://aisafetykaiserslautern.org/">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aisafetykaiserslautern.org/">
+<meta property="og:title" content="AI Safety Kaiserslautern">
+<meta property="og:description" content="A local community for people who want advanced AI to go well. Reading groups, talks, and meetups in Kaiserslautern.">
+<meta property="og:image" content="https://aisafetykaiserslautern.org/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>
+  // Applied before paint so there is no flash of the wrong theme.
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="AI Safety Kaiserslautern — home">
+      <img class="brand-mark" src="assets/img/logo-mark-96.png" alt="" width="65" height="96" aria-hidden="true">
+      <span class="brand-text">
+        <strong>AI Safety</strong>
+        <span>Kaiserslautern</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#what-we-do">What we do</a>
+      <a href="#why">Why AI safety</a>
+      <a href="#events">Events</a>
+      <a href="#resources">Resources</a>
+      <a class="btn btn-primary btn-sm" href="#join">Join us</a>
+    </nav>
+
+    <div class="header-tools">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 12H2M22 12h-2.2M5.6 5.6 4 4M20 20l-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ───────────────────────── Hero ───────────────────────── -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Local community · Kaiserslautern, Germany</p>
+        <h1>AI Safety<br>Kaiserslautern</h1>
+        <p class="lede">
+          Conversations, events, and community for people who want advanced AI to go well.
+        </p>
+        <p class="body-lg">
+          We are a local group for anyone in and around Kaiserslautern who wants to think
+          carefully about advanced AI systems &mdash; alignment, governance, evaluations, and
+          real&#8209;world impact. We host reading groups, talks, and informal meetups for
+          experienced practitioners and complete newcomers alike.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#join">Join the community</a>
+          <a class="btn btn-ghost" href="#events">Upcoming events</a>
+        </div>
+        <p class="hero-note">
+          Everyone is welcome &mdash; students, researchers, engineers, and the simply curious.
+          No background in machine learning required.
+        </p>
+      </div>
+
+      <!-- Brand panel. If you would rather show a photo of Kaiserslautern here,
+           drop the file at assets/img/kaiserslautern.jpg and replace this whole
+           block with:
+             <div class="hero-media is-photo">
+               <img src="assets/img/kaiserslautern.jpg" alt="View over Kaiserslautern"
+                    width="900" height="1100" loading="eager">
+             </div>
+           Licence-clear sources: unsplash.com / pexels.com (credit the photographer). -->
+      <div class="hero-media">
+        <picture>
+          <source srcset="assets/img/logo-mark.webp" type="image/webp">
+          <img src="assets/img/logo-mark.png"
+               alt="AI Safety Kaiserslautern emblem: the Kaiserslautern town hall inside a shield, over circuit traces"
+               width="349" height="512" loading="eager">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── What we do ───────────────────────── -->
+  <section class="section" id="what-we-do">
+    <div class="wrap">
+      <p class="eyebrow">What we do</p>
+      <h2 class="section-title">Focused, local, and open to new people</h2>
+      <p class="section-lede">
+        Three simple things, run regularly, with a low barrier to walking in the door.
+      </p>
+
+      <div class="cards cards-3">
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5Z"/></svg>
+          </span>
+          <h3>Reading groups</h3>
+          <p>
+            Structured discussion of key papers and essays &mdash; alignment, interpretability,
+            evaluations, and AI governance. We read the thing together, then argue about it properly.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 3a5 5 0 0 1 5 5v3.5a5 5 0 0 1-10 0V8a5 5 0 0 1 5-5Z"/><path d="M5 11.5a7 7 0 0 0 14 0M12 18.5V21M8.5 21h7"/></svg>
+          </span>
+          <h3>Talks &amp; workshops</h3>
+          <p>
+            Short talks, open Q&amp;A, and hands&#8209;on sessions with researchers and practitioners,
+            for people who want to build a sharper model of the field and where it is heading.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3.5 19c0-3 2.5-4.8 5.5-4.8s5.5 1.8 5.5 4.8M16 14.6c2.6.2 4.5 1.8 4.5 4.4"/></svg>
+          </span>
+          <h3>Community</h3>
+          <p>
+            A place to meet thoughtful people in Kaiserslautern who care about making advanced
+            AI go well &mdash; and to find collaborators, mentors, and next steps in the field.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Why AI safety ───────────────────────── -->
+  <section class="section section-alt" id="why">
+    <div class="wrap split">
+      <div class="split-copy">
+        <p class="eyebrow">Why AI safety</p>
+        <h2 class="section-title">The technology is moving faster than our understanding of it</h2>
+        <p>
+          AI capabilities are advancing rapidly and hold enormous potential for good. But in a
+          large survey of published AI researchers, 48% put the risk of an extremely bad outcome
+          from advanced AI &mdash; such as human extinction &mdash; at 10% or more
+          (<a href="https://arxiv.org/abs/2206.04132" target="_blank" rel="noopener">Grace et al., 2022</a>).
+          Companies are racing to deploy frontier models while the underlying technology remains
+          largely a black box, with no rigorous theory of how to make these systems safe.
+        </p>
+        <p>
+          We believe there are still fundamental open questions &mdash; technical and
+          institutional &mdash; about how to ensure advanced AI is beneficial rather than harmful.
+          Working on them does not require permission or a PhD. It starts with understanding the
+          problem well enough to be useful.
+        </p>
+        <p class="link-row">
+          <a class="link-arrow" href="https://aisafety.info" target="_blank" rel="noopener">
+            Introduction to AI safety
+          </a>
+        </p>
+      </div>
+
+      <aside class="stat-stack" aria-label="Kaiserslautern context">
+        <div class="stat">
+          <p class="stat-kicker">Why here</p>
+          <h3>Kaiserslautern is an AI town</h3>
+          <p>
+            RPTU, the German Research Center for Artificial Intelligence (DFKI), the Max Planck
+            Institute for Software Systems, and two Fraunhofer institutes all sit within a few
+            kilometres of each other. There is an unusual density of people here who build and
+            study these systems for a living.
+          </p>
+        </div>
+        <div class="stat">
+          <p class="stat-kicker">Who comes</p>
+          <p>
+            Students and PhDs, software and ML engineers, researchers, policy&#8209;minded folks, and
+            people who simply read something unsettling and wanted to talk it through with others.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Events ───────────────────────── -->
+  <section class="section" id="events">
+    <div class="wrap">
+      <p class="eyebrow">Events</p>
+      <h2 class="section-title">What&rsquo;s coming up</h2>
+      <p class="section-lede">
+        We meet regularly in Kaiserslautern. Join the Signal group to get the details for the next one.
+      </p>
+
+      <!-- TODO(content): replace this notice with real events once scheduled.
+           A simple, repeatable pattern is provided below as a commented-out example. -->
+      <div class="notice">
+        <h3>Our first meetups are being scheduled</h3>
+        <p>
+          We are getting the group off the ground now. Sign up below and we will let you know
+          the moment the first date and venue are fixed &mdash; it will not be long.
+        </p>
+        <a class="btn btn-primary btn-sm" href="#join">Get notified</a>
+      </div>
+
+      <!--
+      <ul class="event-list">
+        <li class="event">
+          <time class="event-date" datetime="2026-09-18">
+            <span class="event-day">18</span>
+            <span class="event-month">Sep</span>
+          </time>
+          <div class="event-body">
+            <h3>Reading group: Introduction to AI alignment</h3>
+            <p class="event-meta">18:30 · RPTU Campus, Building 48 · Free</p>
+            <p>Our first session — no preparation needed, we read together on the night.</p>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="#">Details</a>
+        </li>
+      </ul>
+      -->
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Join ───────────────────────── -->
+  <section class="section section-accent" id="join">
+    <div class="wrap join-inner">
+      <p class="eyebrow">Get involved</p>
+      <h2 class="section-title">Come to the next one</h2>
+      <p class="section-lede">
+        Everyone is welcome, whatever your background. The easiest first step is to join the
+        Signal group &mdash; that is where events get announced.
+      </p>
+
+      <div class="join-grid">
+        <!-- TODO(content): paste the Signal group invite URL (signal.group/#...) into href. -->
+        <a class="join-card" href="#" data-todo="signal-group-invite-url">
+          <span class="join-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+          </span>
+          <span class="join-body">
+            <strong>Signal group</strong>
+            <span>Announcements and everyday discussion</span>
+          </span>
+          <span class="join-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <!-- TODO(content): paste the LinkedIn page URL (linkedin.com/company/...) into href. -->
+        <a class="join-card" href="#" data-todo="linkedin-page-url" target="_blank" rel="noopener">
+          <span class="join-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-3.6c0-1.6 1-2.6 2.3-2.6s2.2 1 2.2 2.6V17"/></svg>
+          </span>
+          <span class="join-body">
+            <strong>LinkedIn</strong>
+            <span>Follow what the group is up to</span>
+          </span>
+          <span class="join-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="join-card" href="mailto:hello@aisafetykaiserslautern.org">
+          <span class="join-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 3.2a8.8 8.8 0 1 0 5.2 15.9"/><circle cx="12" cy="12" r="3.4"/><path d="M15.4 12v1.6a2.6 2.6 0 0 0 5.2 0V12a8.6 8.6 0 0 0-2.6-6.2"/></svg>
+          </span>
+          <span class="join-body">
+            <strong>Email us</strong>
+            <span>Questions, ideas, or offers to help</span>
+          </span>
+          <span class="join-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Resources ───────────────────────── -->
+  <section class="section" id="resources">
+    <div class="wrap">
+      <p class="eyebrow">Resources</p>
+      <h2 class="section-title">Where to start on your own</h2>
+      <p class="section-lede">
+        You do not have to wait for the next meetup. These are the places we point people to first.
+      </p>
+
+      <div class="res-group">
+        <h3 class="res-label">Learn</h3>
+        <div class="res-grid">
+          <a class="res" href="https://aisafety.info" target="_blank" rel="noopener">
+            <strong>AISafety.info</strong>
+            <span>Plain-language answers to the questions everyone starts with.</span>
+          </a>
+          <a class="res" href="https://bluedot.org" target="_blank" rel="noopener">
+            <strong>BlueDot Impact</strong>
+            <span>Free, structured courses on AI safety fundamentals and governance.</span>
+          </a>
+          <a class="res" href="https://www.alignmentforum.org" target="_blank" rel="noopener">
+            <strong>Alignment Forum</strong>
+            <span>Where a lot of the technical alignment discussion actually happens.</span>
+          </a>
+          <a class="res" href="https://www.lesswrong.com" target="_blank" rel="noopener">
+            <strong>LessWrong</strong>
+            <span>Long-form discussion of AI risk and adjacent topics.</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="res-group">
+        <h3 class="res-label">Communities</h3>
+        <div class="res-grid">
+          <a class="res" href="https://safeaigermany.org" target="_blank" rel="noopener">
+            <strong>Safe AI Germany</strong>
+            <span>The national network of German AI safety groups, including ours.</span>
+          </a>
+          <a class="res" href="https://aisafety.com/communities" target="_blank" rel="noopener">
+            <strong>AISafety.com</strong>
+            <span>Directory of communities, events, funding, and open roles worldwide.</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="res-group">
+        <h3 class="res-label">Careers</h3>
+        <div class="res-grid">
+          <a class="res" href="https://80000hours.org/problem-profiles/artificial-intelligence/" target="_blank" rel="noopener">
+            <strong>80,000 Hours</strong>
+            <span>Career guide and problem profile for working on AI safety.</span>
+          </a>
+          <a class="res" href="https://aisafety.careers" target="_blank" rel="noopener">
+            <strong>AI Safety Careers</strong>
+            <span>Open positions in research, policy, and operations.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Supported by ───────────────────────── -->
+  <section class="section supported">
+    <div class="wrap">
+      <div class="supported-panel">
+        <p class="supported-label">Supported by</p>
+        <a class="supported-logo" href="https://safeaigermany.org" target="_blank" rel="noopener">
+          <svg viewBox="0 0 34 34" width="34" height="34" aria-hidden="true">
+            <path d="M27 6c0 11-7.5 17-14.5 17M7 27c0-8 5-14 13-17.5" />
+            <circle cx="11" cy="24" r="1.6"/><circle cx="17" cy="18" r="1.6"/><circle cx="22" cy="12" r="1.6"/>
+          </svg>
+          <span>Safe AI Germany</span>
+        </a>
+        <p class="supported-note">
+          AI Safety Kaiserslautern is part of the Safe AI Germany network of local groups.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top" aria-label="AI Safety Kaiserslautern — back to top">
+        <img class="brand-mark" src="assets/img/logo-mark-96.png" alt="" width="65" height="96" aria-hidden="true">
+        <span class="brand-text">
+          <strong>AI Safety</strong>
+          <span>Kaiserslautern</span>
+        </span>
+      </a>
+      <p>
+        A local community in Kaiserslautern working to reduce catastrophic risks from advanced
+        AI systems, and to help people here contribute to making AI go well.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-label">Explore</h2>
+      <ul>
+        <li><a href="#what-we-do">What we do</a></li>
+        <li><a href="#why">Why AI safety</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#join">Join us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-label">Contact</h2>
+      <ul>
+        <li><a href="mailto:hello@aisafetykaiserslautern.org">hello@aisafetykaiserslautern.org</a></li>
+        <li><span class="muted">Kaiserslautern, Germany</span></li>
+        <!-- TODO(content): same two URLs as the join cards above. -->
+        <li><a href="#" data-todo="linkedin-page-url" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="#" data-todo="signal-group-invite-url">Signal group</a></li>
+        <li><a href="https://safeaigermany.org" target="_blank" rel="noopener">Safe AI Germany</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-label">Legal</h2>
+      <ul>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p>&copy; <span id="year">2026</span> AI Safety Kaiserslautern. Run in a personal capacity.</p>
+    <a class="to-top" href="#top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

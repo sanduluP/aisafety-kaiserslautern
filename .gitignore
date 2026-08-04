@@ -1,0 +1,15 @@
+# OS noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local tooling
+node_modules/
+.wrangler/
+.env
+.env.*

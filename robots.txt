@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /impressum.html
+Disallow: /privacy.html
+
+Sitemap: https://aisafetykaiserslautern.org/sitemap.xml

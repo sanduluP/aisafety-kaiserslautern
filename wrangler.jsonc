@@ -1,0 +1,22 @@
+{
+  // Cloudflare Workers static-assets config.
+  //
+  // The site is deployed as a Worker serving static assets (the live URL is a
+  // *.workers.dev one, not *.pages.dev). Workers Builds reads this file to work
+  // out what to publish, so it needs to stay in the repo root.
+  //
+  // There is no "main" entry script on purpose: this is an assets-only Worker,
+  // so Cloudflare serves the files directly with no code in front of them.
+  //
+  // If the project is ever moved to Cloudflare Pages instead, delete this file
+  // and set the build output directory to "/" in the Pages settings.
+
+  "name": "aisafety-kaiserslautern",
+  "compatibility_date": "2026-08-04",
+
+  "assets": {
+    "directory": "./",
+    // serve 404.html with a real 404 status for unknown paths
+    "not_found_handling": "404-page"
+  }
+}

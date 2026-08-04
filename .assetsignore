@@ -1,0 +1,9 @@
+# Files in the repo that should NOT be published as part of the website.
+# (Cloudflare Workers reads this from the assets directory root.)
+
+.assetsignore
+.gitignore
+wrangler.jsonc
+README.md
+CONTENT-TODO.md
+brand/
