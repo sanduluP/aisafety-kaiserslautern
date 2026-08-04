@@ -701,7 +701,12 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   font-size: .84rem;
   color: var(--muted);
 }
-.to-top { color: var(--muted); text-decoration: none; }
+.footer-credit { display: grid; gap: .3rem; }
+.footer-credit p { margin: 0; }
+.footer-credit a { color: var(--ink-soft); }
+.footer-credit a:hover { color: var(--accent); }
+
+.to-top { color: var(--muted); text-decoration: none; white-space: nowrap; }
 .to-top:hover { color: var(--accent); }
 
 /* ---------- Legal pages ---------- */
