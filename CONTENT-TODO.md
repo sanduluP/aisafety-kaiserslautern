@@ -4,16 +4,11 @@ Search the repo for `TODO(` to find each item in place.
 
 ## Blocking — the site should not be publicly announced until these are done
 
-- [ ] **Impressum** — `impressum.html`
-      German law (§ 5 DDG) requires a real name, a physical postal address, and an
-      email address. Currently `[Full name]` / `[Street and number]`. A site without
-      a valid Impressum is an *Abmahnung* risk, so this one is not optional.
-      If nobody wants to publish a private address, the usual options are:
-      register as an e.V., use an institutional address with permission, or pay for
-      a *ladungsfähige Anschrift* service.
-
-- [ ] **Privacy policy responsible party** — `privacy.html`
-      The address block must match the Impressum.
+- [ ] **Written consent for the c/o address** — `impressum.html`, `privacy.html`
+      The imprint gives Priyabanta Sandulu c/o AI Safety Aachen e. V.,
+      Hünefeldstraße 35, 52068 Aachen — the same arrangement AI Safety Nuremberg
+      uses. This makes Aachen e. V. the service address for Kaiserslautern, so
+      confirm with them that it covers us too, and keep the confirmation.
 
 - [ ] **Mailbox for hello@aisafetykaiserslautern.org**
       The address is now live on the site in three places. It needs MX records on
