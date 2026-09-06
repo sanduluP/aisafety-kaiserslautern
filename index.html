@@ -217,33 +217,103 @@
         We meet regularly in Kaiserslautern. Join the Signal group to get the details for the next one.
       </p>
 
-      <!-- TODO(content): replace this notice with real events once scheduled.
-           A simple, repeatable pattern is provided below as a commented-out example. -->
-      <div class="notice">
-        <h3>Our first meetups are being scheduled</h3>
-        <p>
-          We are getting the group off the ground now. Sign up below and we will let you know
-          the moment the first date and venue are fixed &mdash; it will not be long.
-        </p>
-        <a class="btn btn-primary btn-sm" href="#join">Get notified</a>
-      </div>
-
-      <!--
       <ul class="event-list">
         <li class="event">
-          <time class="event-date" datetime="2026-09-18">
-            <span class="event-day">18</span>
+          <time class="event-date" datetime="2026-09-15T16:00+02:00">
+            <span class="event-day">15</span>
             <span class="event-month">Sep</span>
           </time>
           <div class="event-body">
-            <h3>Reading group: Introduction to AI alignment</h3>
-            <p class="event-meta">18:30 · RPTU Campus, Building 48 · Free</p>
-            <p>Our first session — no preparation needed, we read together on the night.</p>
+            <h3>Reading group &mdash; first session</h3>
+            <!-- TODO(content): add the room here once the venue is fixed. -->
+            <p class="event-meta">16:00 &middot; In person, Kaiserslautern &middot; Free</p>
+            <p>
+              No preparation needed &mdash; we read together in the session. The venue goes out
+              in the Signal group a few days before.
+            </p>
           </div>
-          <a class="btn btn-ghost btn-sm" href="#">Details</a>
+          <a class="btn btn-ghost btn-sm" href="#join">Get the venue</a>
+        </li>
+
+        <li class="event">
+          <time class="event-date" datetime="2026-10-29T15:30+01:00">
+            <span class="event-day">29</span>
+            <span class="event-month">Oct</span>
+          </time>
+          <div class="event-body">
+            <h3>Launch: AI Safety Kaiserslautern + guest talks</h3>
+            <p class="event-meta">15:30&ndash;18:00 &middot; DFKI, Trippstadter Stra&szlig;e 122 &middot; Free</p>
+            <!-- TODO(content): add the speaker line once the programme is confirmed. -->
+            <p>
+              Our first public event. Talks and discussion on how AI systems fail and what makes
+              them trustworthy &mdash; no background in AI safety needed. In English, everyone welcome.
+            </p>
+          </div>
+          <a class="btn btn-primary btn-sm" href="https://luma.com/nt0gvn82" target="_blank" rel="noopener">Register</a>
         </li>
       </ul>
-      -->
+
+      <!-- Structured data for the two events above. Not rendered — it lets Google,
+           Bing and calendar tools read the dates, venue and registration link.
+           Keep it in step with the markup whenever an event changes. -->
+      <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "Reading group — first session",
+          "description": "Informal reading group. No preparation needed — we read together on the night.",
+          "startDate": "2026-09-15T16:00:00+02:00",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "inLanguage": "en",
+          "isAccessibleForFree": true,
+          "location": {
+            "@type": "Place",
+            "name": "Kaiserslautern",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kaiserslautern",
+              "addressCountry": "DE"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "AI Safety Kaiserslautern",
+            "url": "https://aisafetykaiserslautern.org"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "Launch: AI Safety Kaiserslautern + Guest Talks",
+          "description": "Our first public event. Talks and discussion on how AI systems fail and what makes them trustworthy — no background in AI safety needed. In English, everyone welcome.",
+          "startDate": "2026-10-29T15:30:00+01:00",
+          "endDate": "2026-10-29T18:00:00+01:00",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "inLanguage": "en",
+          "isAccessibleForFree": true,
+          "url": "https://luma.com/nt0gvn82",
+          "location": {
+            "@type": "Place",
+            "name": "German Research Center for Artificial Intelligence (DFKI)",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Trippstadter Straße 122",
+              "postalCode": "67663",
+              "addressLocality": "Kaiserslautern",
+              "addressCountry": "DE"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "AI Safety Kaiserslautern",
+            "url": "https://aisafetykaiserslautern.org"
+          }
+        }
+      ]
+      </script>
     </div>
   </section>
 
