@@ -330,7 +330,12 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .btn-primary { background: var(--accent); color: var(--on-accent); }
 .btn-primary:hover { background: var(--accent-ink); }
 
-.btn-brand { background: var(--brand); color: var(--surface); }
+.btn-brand {
+  background: var(--brand);
+  color: var(--surface);
+  border-color: var(--brand-deep);
+  box-shadow: 0 0 0 1px var(--brand), var(--shadow-sm);   /* visible edge on every background */
+}
 .btn-brand:hover { background: var(--brand-deep); color: #FFFFFF; }
 
 .btn-ghost {
@@ -554,9 +559,22 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 /* ---------- Theory of change ---------- */
 
-.toc-figure { margin: 0; }
-.toc-scroll { overflow-x: auto; }           /* narrow screens scroll sideways instead of shrinking the text */
-.toc-scroll img { display: block; width: 100%; min-width: 760px; height: auto; }
+.toc-figure {
+  /* wider than the text column, so the cell text stays readable */
+  width: min(1400px, calc(100vw - 2rem));
+  margin: 0 0 0 50%;
+  transform: translateX(-50%);
+}
+.toc-scroll {
+  overflow-x: auto;                        /* narrow screens scroll sideways instead of shrinking the text */
+  padding: clamp(.75rem, 2vw, 1.5rem);
+  background: #FFFFFF;                     /* the diagram is drawn on white */
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.toc-scroll img { display: block; width: 100%; min-width: 900px; height: auto; }
+.toc-figure figcaption { margin-top: .6rem; text-align: right; font-size: .85rem; }
 
 /* ---------- Join ---------- */
 
@@ -640,6 +658,27 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   transition: border-color .15s ease, background .15s ease;
 }
 .res:hover { border-color: var(--brand); background: var(--brand-soft); }
+
+/* tabs, added by main.js */
+.res-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+.res-tab {
+  padding: .5rem 1.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.res-tab:hover { border-color: var(--muted); color: var(--ink); }
+.res-tab[aria-selected="true"] { background: var(--brand); border-color: var(--brand); color: var(--surface); }
+.res-columns.has-tabs { display: block; }
+.res-columns.has-tabs .res-label {           /* the tab already names the group */
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.res-columns.has-tabs .res-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .res strong { display: block; font-size: .96rem; margin-bottom: .15rem; }
 .res strong::after { content: " \2197"; color: var(--muted); font-weight: 400; }   /* external link */
 .res span { font-size: .85rem; color: var(--muted); }
@@ -815,16 +854,17 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 @media (max-width: 980px) {
   .res-columns { grid-template-columns: 1fr; }
+  .res-columns.has-tabs .res-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 620px) {
   .cards-3,
-  .join-grid { grid-template-columns: 1fr; }
+  .join-grid,
+  .res-columns.has-tabs .res-grid { grid-template-columns: 1fr; }
 
   .event { grid-template-columns: auto minmax(0, 1fr); }
   .event > .btn,
   .event-actions { grid-column: 2; justify-self: start; }
-  .event-actions { flex-direction: row; flex-wrap: wrap; }
 
   .btn-row .btn { flex: 1 1 auto; }
   .footer-grid { grid-template-columns: 1fr; }
