@@ -330,6 +330,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .btn-primary { background: var(--accent); color: var(--on-accent); }
 .btn-primary:hover { background: var(--accent-ink); }
 
+.btn-brand { background: var(--brand); color: var(--surface); }
+.btn-brand:hover { background: var(--brand-deep); color: #FFFFFF; }
+
 .btn-ghost {
   background: transparent;
   color: var(--ink);
@@ -532,6 +535,28 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .event-body h3 { margin-bottom: .25rem; }
 .event-meta { font-size: .85rem; color: var(--accent); font-weight: 600; margin-bottom: .35rem; }
 .event-body p { font-size: .93rem; color: var(--muted); margin: 0; }
+.event-body .event-note { font-size: .85rem; margin-top: .55rem; }
+.event-actions { display: flex; flex-direction: column; gap: .5rem; }
+
+.past-events { margin-top: 1.75rem; }
+.past-events > summary {
+  cursor: pointer;
+  width: max-content;
+  padding: .35rem 0;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.past-events > summary:hover { color: var(--ink); }
+.past-events[open] > summary { margin-bottom: .85rem; }
+.event-past { box-shadow: none; }
+.event-past .event-date { background: var(--bg-alt); color: var(--muted); }
+.event-past .event-meta { color: var(--muted); }
+
+/* ---------- Theory of change ---------- */
+
+.toc-figure { margin: 0; }
+.toc-scroll { overflow-x: auto; }           /* narrow screens scroll sideways instead of shrinking the text */
+.toc-scroll img { display: block; width: 100%; min-width: 760px; height: auto; }
 
 /* ---------- Join ---------- */
 
@@ -586,7 +611,12 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 /* ---------- Resources ---------- */
 
-.res-group + .res-group { margin-top: 2.25rem; }
+.res-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+}
 
 .res-label {
   margin-bottom: .85rem;
@@ -597,11 +627,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   color: var(--muted);
 }
 
-.res-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .7rem;
-}
+.res-grid { display: grid; gap: .6rem; }
 
 .res {
   display: block;
@@ -615,6 +641,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 }
 .res:hover { border-color: var(--brand); background: var(--brand-soft); }
 .res strong { display: block; font-size: .96rem; margin-bottom: .15rem; }
+.res strong::after { content: " \2197"; color: var(--muted); font-weight: 400; }   /* external link */
 .res span { font-size: .85rem; color: var(--muted); }
 
 /* ---------- Supported by ---------- */
@@ -786,13 +813,18 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   .nav > a.btn-primary { margin: .5rem 0 0; padding: .85rem 1rem; }
 }
 
+@media (max-width: 980px) {
+  .res-columns { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 620px) {
   .cards-3,
-  .join-grid,
-  .res-grid { grid-template-columns: 1fr; }
+  .join-grid { grid-template-columns: 1fr; }
 
   .event { grid-template-columns: auto minmax(0, 1fr); }
-  .event .btn { grid-column: 2; justify-self: start; }
+  .event > .btn,
+  .event-actions { grid-column: 2; justify-self: start; }
+  .event-actions { flex-direction: row; flex-wrap: wrap; }
 
   .btn-row .btn { flex: 1 1 auto; }
   .footer-grid { grid-template-columns: 1fr; }

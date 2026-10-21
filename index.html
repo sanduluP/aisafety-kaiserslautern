@@ -50,6 +50,7 @@
       <a href="#what-we-do">What we do</a>
       <a href="#why">Why AI safety</a>
       <a href="#events">Events</a>
+      <a href="#vision">Vision</a>
       <a href="#resources">Resources</a>
       <a class="btn btn-primary btn-sm" href="#join">Join us</a>
     </nav>
@@ -180,7 +181,7 @@
           problem well enough to be useful.
         </p>
         <p class="link-row">
-          <a class="link-arrow" href="https://aisafety.info" target="_blank" rel="noopener">
+          <a class="link-arrow" href="https://bluedot.org/courses" target="_blank" rel="noopener">
             Introduction to AI safety
           </a>
         </p>
@@ -213,45 +214,44 @@
     <div class="wrap">
       <p class="eyebrow">Events</p>
       <h2 class="section-title">What&rsquo;s coming up</h2>
-      <p class="section-lede">
-        We meet regularly in Kaiserslautern. Join the Signal group to get the details for the next one.
-      </p>
 
       <ul class="event-list">
-        <li class="event">
-          <time class="event-date" datetime="2026-09-15T16:00+02:00">
-            <span class="event-day">15</span>
-            <span class="event-month">Sep</span>
-          </time>
-          <div class="event-body">
-            <h3>Reading group &mdash; first session</h3>
-            <!-- TODO(content): add the room here once the venue is fixed. -->
-            <p class="event-meta">16:00 &middot; In person, Kaiserslautern &middot; Free</p>
-            <p>
-              No preparation needed &mdash; we read together in the session. The venue goes out
-              in the Signal group a few days before.
-            </p>
-          </div>
-          <a class="btn btn-ghost btn-sm" href="#join">Get the venue</a>
-        </li>
-
         <li class="event">
           <time class="event-date" datetime="2026-10-29T15:30+01:00">
             <span class="event-day">29</span>
             <span class="event-month">Oct</span>
           </time>
           <div class="event-body">
-            <h3>Launch: AI Safety Kaiserslautern + guest talks</h3>
+            <h3>Meetup #1: AI Safety Kaiserslautern</h3>
             <p class="event-meta">15:30&ndash;18:00 &middot; DFKI, Trippstadter Stra&szlig;e 122 &middot; Free</p>
             <!-- TODO(content): add the speaker line once the programme is confirmed. -->
-            <p>
-              Our first public event. Talks and discussion on how AI systems fail and what makes
-              them trustworthy &mdash; no background in AI safety needed. In English, everyone welcome.
-            </p>
+            <p>Talks and a panel. Language: English.</p>
+            <p class="event-note">Can&rsquo;t make it? Cancel on Luma with your registration email.</p>
           </div>
-          <a class="btn btn-primary btn-sm" href="https://luma.com/nt0gvn82" target="_blank" rel="noopener">Register</a>
+          <div class="event-actions">
+            <a class="btn btn-brand btn-sm" href="https://luma.com/nt0gvn82" target="_blank" rel="noopener">Register</a>
+            <a class="btn btn-ghost btn-sm" href="https://luma.com/nt0gvn82" target="_blank" rel="noopener"
+               aria-label="Manage or cancel your registration on Luma">Manage or cancel</a>
+          </div>
         </li>
       </ul>
+
+      <!-- Past events: move an event's <li> in here once its date has passed. -->
+      <details class="past-events">
+        <summary>Past events</summary>
+        <ul class="event-list">
+          <li class="event event-past">
+            <time class="event-date" datetime="2026-09-15T16:00+02:00">
+              <span class="event-day">15</span>
+              <span class="event-month">Sep</span>
+            </time>
+            <div class="event-body">
+              <h3>Reading group &mdash; first session</h3>
+              <p class="event-meta">16:00 &middot; Hybrid, Kaiserslautern</p>
+            </div>
+          </li>
+        </ul>
+      </details>
 
       <!-- Structured data for the two events above. Not rendered — it lets Google,
            Bing and calendar tools read the dates, venue and registration link.
@@ -265,7 +265,7 @@
           "description": "Informal reading group. No preparation needed — we read together on the night.",
           "startDate": "2026-09-15T16:00:00+02:00",
           "eventStatus": "https://schema.org/EventScheduled",
-          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
           "inLanguage": "en",
           "isAccessibleForFree": true,
           "location": {
@@ -286,8 +286,8 @@
         {
           "@context": "https://schema.org",
           "@type": "Event",
-          "name": "Launch: AI Safety Kaiserslautern + Guest Talks",
-          "description": "Our first public event. Talks and discussion on how AI systems fail and what makes them trustworthy — no background in AI safety needed. In English, everyone welcome.",
+          "name": "Meetup #1: AI Safety Kaiserslautern",
+          "description": "Talks and a panel. Language: English.",
           "startDate": "2026-10-29T15:30:00+01:00",
           "endDate": "2026-10-29T18:00:00+01:00",
           "eventStatus": "https://schema.org/EventScheduled",
@@ -317,15 +317,32 @@
     </div>
   </section>
 
+  <!-- ───────────────────────── Vision ───────────────────────── -->
+  <!-- Image: slide 1 of strategy/theory-of-change.pptx, cropped to the headers and cells.
+       Re-export it when the deck changes, and keep the alt text in step. -->
+  <section class="section section-alt" id="vision">
+    <div class="wrap">
+      <p class="eyebrow">Our vision</p>
+      <h2 class="section-title">Theory of change</h2>
+      <p class="section-lede">
+        How local activity becomes people working on catastrophic risk from advanced AI.
+      </p>
+
+      <figure class="toc-figure">
+        <div class="toc-scroll">
+          <img src="assets/img/theory-of-change.png" width="2400" height="833" loading="lazy"
+               alt="Theory of change in 5 columns. Inputs: committed core team (organisers, volunteers), DFKI and RPTU access (venue, orientation week, student reach), funding. Activities: public events (deep-dive talks, topic panels, networking events, reading groups, hands-on technical workshops), seeding and supporting hubs in other Rhineland-Palatinate cities, one-to-one career transition support. Outputs: students aware of, interested in and capable of contributing to AI safety; students starting AI safety roles and research; local hubs that survive leadership turnover. Outcomes: a talent pipeline into research, industry and safety startups; easier starts for new local student hubs. Impact: Rhineland-Palatinate becomes a source of talent working on catastrophic risk from advanced AI; more capable people working to make advanced AI systems safe. Arrows: the core team feeds all 3 activities; DFKI and RPTU access feeds public events; funding feeds public events and hub seeding. Public events lead to aware students, hub seeding to resilient hubs, career support to students starting roles. Both student outputs feed the talent pipeline, resilient hubs feed easier hub starts. The talent pipeline leads to both impacts; easier hub starts lead to the Rhineland-Palatinate talent source.">
+        </div>
+      </figure>
+    </div>
+  </section>
+
   <!-- ───────────────────────── Join ───────────────────────── -->
   <section class="section section-accent" id="join">
     <div class="wrap join-inner">
       <p class="eyebrow">Get involved</p>
-      <h2 class="section-title">Come to the next one</h2>
-      <p class="section-lede">
-        Everyone is welcome, whatever your background. The easiest first step is to join the
-        Signal group &mdash; that is where events get announced.
-      </p>
+      <h2 class="section-title">Stay in touch</h2>
+      <p class="section-lede">We announce events in our Signal group.</p>
 
       <div class="join-grid">
         <a class="join-card" href="https://signal.group/#CjQKIJROV0Q8fZuMW2Enf7PxpZ2H-xfHYSIsQhwiZB-bFXzsEhBNLP00tWnXSX2ShsEN9pTD" target="_blank" rel="noopener">
@@ -369,20 +386,23 @@
     <div class="wrap">
       <p class="eyebrow">Resources</p>
       <h2 class="section-title">Where to start on your own</h2>
-      <p class="section-lede">
-        You do not have to wait for the next meetup. These are the places we point people to first.
-      </p>
+      <p class="section-lede">You don&rsquo;t have to wait for the next meetup &mdash; start with these.</p>
 
+      <div class="res-columns">
       <div class="res-group">
         <h3 class="res-label">Learn</h3>
         <div class="res-grid">
+          <a class="res" href="https://bluedot.org/courses" target="_blank" rel="noopener">
+            <strong>BlueDot Impact</strong>
+            <span>Free, structured courses on AI safety and governance.</span>
+          </a>
+          <a class="res" href="https://ai-safety-atlas.com" target="_blank" rel="noopener">
+            <strong>AI Safety Atlas</strong>
+            <span>A free, self-paced textbook on risks from advanced AI.</span>
+          </a>
           <a class="res" href="https://aisafety.info" target="_blank" rel="noopener">
             <strong>AISafety.info</strong>
             <span>Plain-language answers to the questions everyone starts with.</span>
-          </a>
-          <a class="res" href="https://bluedot.org" target="_blank" rel="noopener">
-            <strong>BlueDot Impact</strong>
-            <span>Free, structured courses on AI safety fundamentals and governance.</span>
           </a>
           <a class="res" href="https://www.alignmentforum.org" target="_blank" rel="noopener">
             <strong>Alignment Forum</strong>
@@ -421,6 +441,7 @@
             <span>Open positions in research, policy, and operations.</span>
           </a>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -468,6 +489,7 @@
         <li><a href="#what-we-do">What we do</a></li>
         <li><a href="#why">Why AI safety</a></li>
         <li><a href="#events">Events</a></li>
+        <li><a href="#vision">Vision</a></li>
         <li><a href="#resources">Resources</a></li>
         <li><a href="#join">Join us</a></li>
       </ul>
@@ -477,7 +499,6 @@
       <h2 class="footer-label">Contact</h2>
       <ul>
         <li><a href="mailto:hello@aisafetykaiserslautern.org">hello@aisafetykaiserslautern.org</a></li>
-        <li><span class="muted">Kaiserslautern, Germany</span></li>
         <li><a href="https://www.linkedin.com/company/ai-safety-kaiserslautern" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="https://signal.group/#CjQKIJROV0Q8fZuMW2Enf7PxpZ2H-xfHYSIsQhwiZB-bFXzsEhBNLP00tWnXSX2ShsEN9pTD" target="_blank" rel="noopener">Signal group</a></li>
         <li><a href="https://safeaigermany.org" target="_blank" rel="noopener">Safe AI Germany</a></li>

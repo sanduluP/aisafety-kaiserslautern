@@ -42,6 +42,8 @@ Search the repo for `TODO(` to find each item in place.
 - [x] Imprint restructured against the Safe AI Germany imprint: § 5 DDG heading
       (not the repealed TMG), a separate § 18 (2) MStV responsible person, a note
       that the group has no legal form of its own, and a link-liability clause
+- [x] Reading group (15 Sep) moved to a collapsible "Past events" list; the launch
+      event card has a "Manage or cancel" button that opens the Luma page
 
 ## Verify
 
@@ -53,9 +55,6 @@ Search the repo for `TODO(` to find each item in place.
 - [ ] Confirm the Kaiserslautern institutions named in "Why here" (RPTU, DFKI,
       MPI-SWS, Fraunhofer ITWM and IESE) are described the way you want.
 - [ ] Decide whether to list organiser names anywhere.
-- [ ] **Reading-group venue (15 Sep)** — `index.html`, marked `TODO(content)`.
-      The card currently says "In person, Kaiserslautern" and points people at the
-      Signal group for the room.
 - [ ] **Speaker line for 29 Oct** — `index.html`, marked `TODO(content)`.
       Goran Radanović (Research Group Leader, MPI-SWS) has agreed; not published
       yet pending his sign-off and the rest of the programme.
