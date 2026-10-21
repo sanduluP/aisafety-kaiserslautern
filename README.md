@@ -34,7 +34,7 @@ the published site.
 - **Build command:** *(none — there is nothing to build)*
 - **Deploy command:** `npx wrangler deploy`
 
-Every push to `main` publishes automatically. If a deploy goes wrong, roll back
+Every push to `master` publishes automatically. If a deploy goes wrong, roll back
 from the Worker's **Deployments** tab — no code change needed.
 
 > If the project is ever moved to Cloudflare **Pages** instead, delete
@@ -58,6 +58,13 @@ assets/
   img/                web-sized logo derivatives, favicons, social preview
 brand/                the original full-resolution logo files, kept for reference
 ```
+
+## Changing CSS, JS or images
+
+Browsers cache everything under `assets/`. The HTML links those files with a version
+tag, for example `assets/css/styles.css?v=20261021`. When you change a file there,
+bump the tag in every `.html` file that links it (`index.html`, `impressum.html`,
+`privacy.html`, `404.html`), or returning visitors keep seeing the old file.
 
 ## Editing content
 
