@@ -688,10 +688,15 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .supported { padding-block: 0 clamp(3.5rem, 8vw, 6rem); }
 
 .supported-panel {
+  --sage:        #5F7A59;   /* Safe AI Germany deep sage */
+  --sage-ink:    #44583F;
+  --sage-soft:   #EEF3EC;
+  --sage-line:   #D3DFCF;
   padding: clamp(2rem, 5vw, 3rem);
   border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, #12305E 0%, #071527 100%);
-  color: #FFFFFF;
+  background: var(--sage-soft);
+  border: 1px solid var(--sage-line);
+  color: var(--sage-ink);
   text-align: center;
 }
 .supported-label {
@@ -700,24 +705,41 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   font-weight: 700;
   letter-spacing: .13em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .62);
+  color: var(--sage);
 }
 .supported-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: .7rem;
-  color: inherit;
-  text-decoration: none;
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
+  display: inline-block;
+  line-height: 0;
+  border-radius: 8px;
+  transition: opacity .15s ease;
 }
-.supported-logo:hover { text-decoration: underline; }
+.supported-logo:hover { opacity: .8; }
+.saige-logo { width: min(320px, 78vw); height: auto; }
+.saige-logo-on-dark { display: none; }
 .supported-note {
   margin: 1.1rem auto 0;
   max-width: 46ch;
   font-size: .9rem;
-  color: rgba(255, 255, 255, .72);
+  color: var(--sage-ink);
+}
+
+:root[data-theme="dark"] .supported-panel {
+  --sage:        #B9CEB2;
+  --sage-ink:    #CFDCCB;
+  --sage-soft:   #141D17;
+  --sage-line:   #263428;
+}
+:root[data-theme="dark"] .saige-logo-on-light { display: none; }
+:root[data-theme="dark"] .saige-logo-on-dark { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .supported-panel {
+    --sage:        #B9CEB2;
+    --sage-ink:    #CFDCCB;
+    --sage-soft:   #141D17;
+    --sage-line:   #263428;
+  }
+  :root:not([data-theme="light"]) .saige-logo-on-light { display: none; }
+  :root:not([data-theme="light"]) .saige-logo-on-dark { display: inline; }
 }
 
 /* ---------- Footer ---------- */
