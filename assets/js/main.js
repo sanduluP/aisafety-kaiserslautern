@@ -113,6 +113,31 @@
     select(0);
   }
 
+  /* ---- Start a group: open the email app with the answers as a readable message ----
+     Without JS the form's own mailto submit still works. */
+  var startForm = document.getElementById('start-form');
+  if (startForm) {
+    startForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = startForm.elements;
+      var wants = Array.prototype.slice.call(startForm.querySelectorAll('input[name="Wants"]:checked'))
+        .map(function (c) { return '- ' + c.value; });
+      var body = [
+        'Name: ' + f['Name'].value,
+        'University: ' + f['University'].value,
+        'I am ' + f['Role'].value,
+        '',
+        'What motivates me:',
+        f['Motivation'].value,
+        '',
+        'I would like to:'
+      ].concat(wants.length ? wants : ['- (nothing ticked)']).join('\n');
+      window.location.href = 'mailto:hello@aisafetykaiserslautern.org' +
+        '?subject=' + encodeURIComponent('Start an AI safety group: ' + f['University'].value) +
+        '&body=' + encodeURIComponent(body);
+    });
+  }
+
   /* ---- Footer year ---- */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());

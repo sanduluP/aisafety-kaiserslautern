@@ -11,7 +11,7 @@
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261028">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261103">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -51,6 +51,7 @@
       <a href="#why">Why AI safety</a>
       <a href="#events">Events</a>
       <a href="#vision">Vision</a>
+      <a href="#start-a-group">Start a group</a>
       <a href="#resources">Resources</a>
       <a class="btn btn-primary btn-sm" href="#join">Join us</a>
     </nav>
@@ -224,7 +225,7 @@
           <div class="event-body">
             <h3>Introduction to AI Safety: Talk with Safe AI Germany</h3>
             <p class="event-meta">15:30&ndash;18:30 &middot; DFKI, Trippstadter Stra&szlig;e 122 &middot; Free</p>
-            <p>Johannes Koch (Safe AI Germany) on how fast AI is progressing, the main safety research directions, and how you can get involved. Beginner-friendly, with pizza after the talk. Language: English.</p>
+            <p>Johannes Koch (Safe AI Germany) on how fast AI is progressing, the main safety research directions, and how you can get involved. Beginner-friendly, followed by refreshments and networking. Language: English.</p>
             <p class="event-note">Can&rsquo;t make it? Cancel on Luma with your registration email.</p>
           </div>
           <div class="event-actions">
@@ -326,7 +327,7 @@
           "@context": "https://schema.org",
           "@type": "Event",
           "name": "Introduction to AI Safety: Talk with Safe AI Germany",
-          "description": "Johannes Koch (Safe AI Germany) on how fast AI is progressing, the main safety research directions, and how you can get involved. Beginner-friendly, with pizza after the talk. Language: English.",
+          "description": "Johannes Koch (Safe AI Germany) on how fast AI is progressing, the main safety research directions, and how you can get involved. Beginner-friendly, followed by refreshments and networking. Language: English.",
           "startDate": "2026-11-25T15:30:00+01:00",
           "endDate": "2026-11-25T18:30:00+01:00",
           "eventStatus": "https://schema.org/EventScheduled",
@@ -376,6 +377,104 @@
           <a href="assets/img/theory-of-change.png?v=20261021" target="_blank" rel="noopener">Open full size</a>
         </figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Start a group ───────────────────────── -->
+  <section class="section" id="start-a-group">
+    <div class="wrap split">
+      <div class="split-copy">
+        <p class="eyebrow">Start a group</p>
+        <h2 class="section-title">Bring AI safety to your university</h2>
+        <p>
+          We are reaching out to universities across Rhineland-Palatinate. If you want to start an
+          AI safety group, or first want to see how one runs, tell us who you are.
+        </p>
+        <p class="muted">
+          For students, PhD researchers and staff at any university or Hochschule.
+          No AI safety background needed.
+        </p>
+
+        <ul class="offer-list">
+          <li>
+            <strong>Our playbook</strong>
+            <span>The event formats and launch slides we used in Kaiserslautern, and what we learned.</span>
+          </li>
+          <li>
+            <strong>Speakers and contacts</strong>
+            <span>Introductions to the speakers from our events and to Safe AI Germany.</span>
+          </li>
+          <li>
+            <strong>Come and see one</strong>
+            <span>Join our <a href="#events">next event</a>. Places are still free.</span>
+          </li>
+          <li>
+            <strong>A course to run</strong>
+            <span>Free curricula such as BlueDot and AI Safety Atlas, listed in <a href="#resources">Resources</a>.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sends nothing to a server: the form opens the visitor's email app (main.js builds the message;
+           without JS the browser's own mailto submit is the fallback). -->
+      <form class="form-card" id="start-form" action="mailto:hello@aisafetykaiserslautern.org?subject=Start%20an%20AI%20safety%20group"
+            method="post" enctype="text/plain">
+        <h3>Tell us about you</h3>
+
+        <div class="field">
+          <label for="sg-name">Your name</label>
+          <input id="sg-name" name="Name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="sg-uni">University</label>
+          <input id="sg-uni" name="University" type="text" list="sg-unis" autocomplete="organization" required
+                 placeholder="e.g. Universit&auml;t Trier">
+          <datalist id="sg-unis">
+            <option value="Johannes Gutenberg-Universit&auml;t Mainz">
+            <option value="RPTU Kaiserslautern-Landau">
+            <option value="Universit&auml;t Koblenz">
+            <option value="Universit&auml;t Trier">
+            <option value="Hochschule Kaiserslautern">
+            <option value="Hochschule Koblenz">
+            <option value="Hochschule Mainz">
+            <option value="Hochschule Trier">
+            <option value="Hochschule Worms">
+            <option value="Hochschule f&uuml;r Wirtschaft und Gesellschaft Ludwigshafen">
+            <option value="Technische Hochschule Bingen">
+            <option value="WHU &ndash; Otto Beisheim School of Management">
+            <option value="Deutsche Universit&auml;t f&uuml;r Verwaltungswissenschaften Speyer">
+          </datalist>
+        </div>
+
+        <div class="field">
+          <label for="sg-role">I am</label>
+          <select id="sg-role" name="Role">
+            <option>a student</option>
+            <option>a PhD researcher</option>
+            <option>staff or faculty</option>
+            <option>other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="sg-why">What motivates you to start a group?</label>
+          <textarea id="sg-why" name="Motivation" rows="4" required></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend>I would like to</legend>
+          <label class="check"><input type="checkbox" name="Wants" value="start a group at my university" checked> Start a group at my university</label>
+          <label class="check"><input type="checkbox" name="Wants" value="come to your next event"> Come to your next event</label>
+          <label class="check"><input type="checkbox" name="Wants" value="co-host an event with you"> Co-host an event with you</label>
+        </fieldset>
+
+        <button class="btn btn-primary" type="submit">Send by email</button>
+        <p class="form-note">
+          This opens your email app with your answers filled in. Nothing is stored on this website.
+          Or write to <a href="mailto:hello@aisafetykaiserslautern.org">hello@aisafetykaiserslautern.org</a>.
+        </p>
+      </form>
     </div>
   </section>
 
@@ -626,6 +725,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20261021"></script>
+<script src="assets/js/main.js?v=20261103"></script>
 </body>
 </html>

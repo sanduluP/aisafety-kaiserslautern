@@ -576,6 +576,50 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .toc-scroll img { display: block; width: 100%; min-width: 900px; height: auto; }
 .toc-figure figcaption { margin-top: .6rem; text-align: right; font-size: .85rem; }
 
+/* ---------- Start a group ---------- */
+
+.offer-list { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: .9rem; }
+.offer-list li {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  border-left: 3px solid var(--brand-soft);
+}
+.offer-list strong { font-size: .97rem; }
+.offer-list span { color: var(--muted); font-size: .93rem; }
+
+.form-card {
+  padding: 1.6rem 1.5rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.form-card h3 { margin-top: 0; }
+.field { margin: 0 0 1rem; padding: 0; border: 0; min-width: 0; }
+.field > label,
+.field > legend { display: block; margin-bottom: .35rem; padding: 0; font-size: .88rem; font-weight: 600; }
+.field input[type="text"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: .6rem .75rem;
+  font: inherit;
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+}
+.field textarea { resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.check { display: flex; align-items: center; gap: .5rem; margin: .3rem 0; font-size: .93rem; }
+.check input { accent-color: var(--accent); width: 1rem; height: 1rem; }
+.form-card .btn { width: 100%; justify-content: center; margin-top: .25rem; }
+.form-note { margin: .8rem 0 0; font-size: .82rem; color: var(--muted); }
+
 /* ---------- Join ---------- */
 
 .section-accent {
