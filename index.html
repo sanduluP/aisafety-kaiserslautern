@@ -11,7 +11,7 @@
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261103b">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261104">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -451,20 +451,24 @@
         </ul>
       </div>
 
-      <!-- Sends nothing to a server: the form opens the visitor's email app (main.js builds the message;
-           without JS the browser's own mailto submit is the fallback). -->
-      <form class="form-card" id="start-form" action="mailto:hello@aisafetykaiserslautern.org?subject=Start%20an%20AI%20safety%20group"
-            method="post" enctype="text/plain">
+      <!-- Posts to worker/index.js, which emails the entry to us. main.js sends it in the background
+           and shows the result here; without JS the browser posts it and comes back with ?sent=1. -->
+      <form class="form-card" id="start-form" action="/api/start-group" method="post">
         <h3>Tell us about you</h3>
 
         <div class="field">
           <label for="sg-name">Your name</label>
-          <input id="sg-name" name="Name" type="text" autocomplete="name" required>
+          <input id="sg-name" name="Name" type="text" autocomplete="name" required maxlength="100">
+        </div>
+
+        <div class="field">
+          <label for="sg-email">Your email</label>
+          <input id="sg-email" name="Email" type="email" autocomplete="email" required maxlength="200">
         </div>
 
         <div class="field">
           <label for="sg-uni">University</label>
-          <input id="sg-uni" name="University" type="text" list="sg-unis" autocomplete="organization" required
+          <input id="sg-uni" name="University" type="text" list="sg-unis" autocomplete="organization" required maxlength="200"
                  placeholder="e.g. Universit&auml;t Trier">
           <datalist id="sg-unis">
             <option value="Johannes Gutenberg-Universit&auml;t Mainz">
@@ -495,12 +499,19 @@
 
         <div class="field">
           <label for="sg-why">What motivates you to start a group?</label>
-          <textarea id="sg-why" name="Motivation" rows="4" required></textarea>
+          <textarea id="sg-why" name="Motivation" rows="4" required maxlength="4000"></textarea>
         </div>
 
-        <button class="btn btn-primary" type="submit">Send by email</button>
+        <!-- hidden from people; bots that fill it are ignored -->
+        <div class="hp" aria-hidden="true">
+          <label for="sg-website">Leave this empty</label>
+          <input id="sg-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Send</button>
+        <p class="form-status" id="start-status" role="status" aria-live="polite" hidden></p>
         <p class="form-note">
-          This opens your email app with your answers filled in. Nothing is stored on this website.
+          We use your answers only to reply to you. See our <a href="privacy.html#form">privacy policy</a>.
           Or write to <a href="mailto:hello@aisafetykaiserslautern.org">hello@aisafetykaiserslautern.org</a>.
         </p>
       </form>
@@ -754,6 +765,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20261103b"></script>
+<script src="assets/js/main.js?v=20261104"></script>
 </body>
 </html>

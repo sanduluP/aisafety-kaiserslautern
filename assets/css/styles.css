@@ -589,6 +589,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .offer-list span { color: var(--muted); font-size: .93rem; }
 
 .form-card {
+  position: relative;
   padding: 1.6rem 1.5rem 1.4rem;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -600,6 +601,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .field > label,
 .field > legend { display: block; margin-bottom: .35rem; padding: 0; font-size: .88rem; font-weight: 600; }
 .field input[type="text"],
+.field input[type="email"],
 .field select,
 .field textarea {
   width: 100%;
@@ -615,7 +617,12 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .field input:focus,
 .field select:focus,
 .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-card .btn { width: 100%; justify-content: center; margin-top: .25rem; }
+.form-card .btn:disabled { opacity: .6; cursor: wait; }
+.form-status { margin: .8rem 0 0; padding: .6rem .8rem; border-radius: 10px; font-size: .9rem; }
+.form-status.is-ok { background: var(--brand-soft); color: var(--brand); }
+.form-status.is-error { background: var(--accent-soft); color: var(--accent-ink); }
 .form-note { margin: .8rem 0 0; font-size: .82rem; color: var(--muted); }
 
 /* ---------- Join ---------- */

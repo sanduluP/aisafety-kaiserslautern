@@ -7,3 +7,6 @@ wrangler.jsonc
 README.md
 CONTENT-TODO.md
 brand/
+worker/
+.wrangler/
+node_modules/

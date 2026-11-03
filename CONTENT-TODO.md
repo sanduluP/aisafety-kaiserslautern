@@ -19,6 +19,17 @@ Search the repo for `TODO(` to find each item in place.
       The address is now live on the site in three places. It needs MX records on
       the domain and an actual mailbox behind it, or mail to it will bounce.
 
+- [ ] **"Start a group" form: direct send** — `worker/index.js`, `wrangler.jsonc`
+      The form posts to `/api/start-group`; the Worker emails each entry to the
+      address in the secret `FORM_TO`. Before pushing that code, in Cloudflare:
+      1. Email → Email Routing on `aisafetykaiserslautern.org`: enable it
+         (adds the MX/SPF records). Add a route hello@ → your inbox; this also
+         fixes the mailbox item above.
+      2. Email Routing → Destination addresses: verify that inbox.
+      3. Workers → aisafety-kaiserslautern → Settings → Variables and Secrets:
+         add the secret `FORM_TO` = that inbox.
+      Until then the form shows "please email us" instead of failing silently.
+
 ## Content still missing
 
 - [ ] **Photo of Kaiserslautern** *(optional)* — `index.html`, hero

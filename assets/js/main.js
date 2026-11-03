@@ -113,24 +113,47 @@
     select(0);
   }
 
-  /* ---- Start a group: open the email app with the answers as a readable message ----
-     Without JS the form's own mailto submit still works. */
+  /* ---- Start a group: send in the background and show the result in place ----
+     Without JS the browser posts the form and the page comes back with ?sent=1 or ?sent=0. */
   var startForm = document.getElementById('start-form');
+  var startStatus = document.getElementById('start-status');
+  var MAIL = 'hello@aisafetykaiserslautern.org';
+
+  function showStatus(ok, text) {
+    if (!startStatus) return;
+    startStatus.hidden = false;
+    startStatus.className = 'form-status ' + (ok ? 'is-ok' : 'is-error');
+    startStatus.textContent = text;
+  }
+  var failText = 'Sorry, that did not go through. Please email us at ' + MAIL + '.';
+
   if (startForm) {
+    var sent = new URLSearchParams(window.location.search).get('sent');
+    if (sent === '1') showStatus(true, 'Thanks! We got your message and will get back to you.');
+    if (sent === '0') showStatus(false, failText);
+
     startForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var f = startForm.elements;
-      var body = [
-        'Name: ' + f['Name'].value,
-        'University: ' + f['University'].value,
-        'I am ' + f['Role'].value,
-        '',
-        'What motivates me:',
-        f['Motivation'].value
-      ].join('\n');
-      window.location.href = 'mailto:hello@aisafetykaiserslautern.org' +
-        '?subject=' + encodeURIComponent('Start an AI safety group: ' + f['University'].value) +
-        '&body=' + encodeURIComponent(body);
+      var button = startForm.querySelector('button[type="submit"]');
+      button.disabled = true;
+      fetch(startForm.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(startForm)
+      }).then(function (r) {
+        return r.json().catch(function () { return { ok: false }; });
+      }).then(function (res) {
+        if (res.ok) {
+          startForm.reset();
+          showStatus(true, 'Thanks! We got your message and will get back to you.');
+        } else {
+          showStatus(false, res.message && /check|fill/i.test(res.message) ? res.message + '.' : failText);
+        }
+      }).catch(function () {
+        showStatus(false, failText);
+      }).then(function () {
+        button.disabled = false;
+      });
     });
   }
 
