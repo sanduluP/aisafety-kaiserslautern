@@ -615,8 +615,6 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .field input:focus,
 .field select:focus,
 .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
-.check { display: flex; align-items: center; gap: .5rem; margin: .3rem 0; font-size: .93rem; }
-.check input { accent-color: var(--accent); width: 1rem; height: 1rem; }
 .form-card .btn { width: 100%; justify-content: center; margin-top: .25rem; }
 .form-note { margin: .8rem 0 0; font-size: .82rem; color: var(--muted); }
 

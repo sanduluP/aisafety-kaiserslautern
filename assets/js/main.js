@@ -120,18 +120,14 @@
     startForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var f = startForm.elements;
-      var wants = Array.prototype.slice.call(startForm.querySelectorAll('input[name="Wants"]:checked'))
-        .map(function (c) { return '- ' + c.value; });
       var body = [
         'Name: ' + f['Name'].value,
         'University: ' + f['University'].value,
         'I am ' + f['Role'].value,
         '',
         'What motivates me:',
-        f['Motivation'].value,
-        '',
-        'I would like to:'
-      ].concat(wants.length ? wants : ['- (nothing ticked)']).join('\n');
+        f['Motivation'].value
+      ].join('\n');
       window.location.href = 'mailto:hello@aisafetykaiserslautern.org' +
         '?subject=' + encodeURIComponent('Start an AI safety group: ' + f['University'].value) +
         '&body=' + encodeURIComponent(body);
