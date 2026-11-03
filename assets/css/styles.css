@@ -543,16 +543,20 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .event-body .event-note { font-size: .85rem; margin-top: .55rem; }
 .event-actions { display: flex; flex-direction: column; gap: .5rem; }
 
-.past-events { margin-top: 1.75rem; }
-.past-events > summary {
+.past-events,
+.toc-details { margin-top: 1.75rem; }
+.past-events > summary,
+.toc-details > summary {
   cursor: pointer;
   width: max-content;
   padding: .35rem 0;
   font-weight: 600;
   color: var(--ink-soft);
 }
-.past-events > summary:hover { color: var(--ink); }
-.past-events[open] > summary { margin-bottom: .85rem; }
+.past-events > summary:hover,
+.toc-details > summary:hover { color: var(--ink); }
+.past-events[open] > summary,
+.toc-details[open] > summary { margin-bottom: .85rem; }
 .event-past { box-shadow: none; }
 .event-past .event-date { background: var(--bg-alt); color: var(--muted); }
 .event-past .event-meta { color: var(--muted); }
