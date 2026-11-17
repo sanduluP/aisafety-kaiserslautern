@@ -11,7 +11,8 @@
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261117">
+<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css?v=20261118e">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -126,9 +127,11 @@
 
       <div class="wwd">
         <figure class="wwd-figure">
-          <img src="assets/img/what-we-do.webp"
+          <img class="wwd-img-light" src="assets/img/what-we-do-light.webp"
                alt="What AI Safety Kaiserslautern offers: Learn, Network, Reading group, Workshop, Talk and meet-up, AI Movie night"
-               width="2000" height="1997" loading="lazy">
+               width="1080" height="1078" loading="lazy">
+          <img class="wwd-img-dark" src="assets/img/what-we-do-dark.webp" alt=""
+               width="1080" height="1078" loading="lazy" aria-hidden="true">
         </figure>
 
         <article class="project-card">
@@ -150,10 +153,11 @@
 
   <!-- ───────────────────────── Why AI safety ───────────────────────── -->
   <section class="section section-alt" id="why">
-    <div class="wrap split">
+    <div class="wrap">
+      <p class="eyebrow">Why AI safety</p>
+      <h2 class="section-title">The technology is moving faster than our understanding of it</h2>
+      <div class="split">
       <div class="split-copy">
-        <p class="eyebrow">Why AI safety</p>
-        <h2 class="section-title">The technology is moving faster than our understanding of it</h2>
         <p>
           AI capabilities are advancing rapidly and hold enormous potential for good. But when 738
           researchers who had published at NeurIPS or ICML were surveyed, 48% put the chance of an
@@ -195,6 +199,7 @@
           </p>
         </div>
       </aside>
+      </div>
     </div>
   </section>
 
@@ -380,6 +385,65 @@
     </div>
   </section>
 
+  <!-- ───────────────────────── Gallery ───────────────────────── -->
+  <!-- Photos: assets/img/gallery, 1600px and 800px webp, metadata (incl. GPS) stripped on export.
+       Newest first. Each tile links to the full 1600px image. -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <p class="eyebrow">Gallery</p>
+      <h2 class="section-title">Moments from our events</h2>
+
+      <p class="section-lede">Impressions from our reading groups, our launch meetup and the kickoff.</p>
+
+      <ul class="gallery" role="list">
+        <li class="g-big">
+          <a href="assets/img/gallery/gallery-2026-11-12-reading-group.webp" target="_blank" rel="noopener"
+             title="Reading group #2, after the discussion · 12 Nov 2026">
+            <img src="assets/img/gallery/gallery-2026-11-12-reading-group.webp"
+                 srcset="assets/img/gallery/gallery-2026-11-12-reading-group-800.webp 800w,
+                         assets/img/gallery/gallery-2026-11-12-reading-group.webp 1600w"
+                 sizes="(max-width: 620px) 100vw, 560px"
+                 alt="Reading group #2, 12 Nov 2026: twelve participants around a table at DFKI after the discussion"
+                 width="1600" height="1200" loading="lazy">
+          </a>
+        </li>
+        <li class="g-wide">
+          <a href="assets/img/gallery/gallery-2026-08-21-kickoff.webp" target="_blank" rel="noopener"
+             title="Kickoff meeting · 21 Aug 2026">
+            <img src="assets/img/gallery/gallery-2026-08-21-kickoff-800.webp"
+                 srcset="assets/img/gallery/gallery-2026-08-21-kickoff-800.webp 800w,
+                         assets/img/gallery/gallery-2026-08-21-kickoff.webp 1600w"
+                 sizes="(max-width: 620px) 100vw, 560px"
+                 alt="Kickoff meeting, 21 Aug 2026: five organisers at a table with cake"
+                 width="1600" height="900" loading="lazy">
+          </a>
+        </li>
+        <li>
+          <a href="assets/img/gallery/gallery-2026-11-12-reading-group-talk.webp" target="_blank" rel="noopener"
+             title="Reading group #2 · 12 Nov 2026">
+            <img class="g-talk" src="assets/img/gallery/gallery-2026-11-12-reading-group-talk-800.webp"
+                 srcset="assets/img/gallery/gallery-2026-11-12-reading-group-talk-800.webp 600w,
+                         assets/img/gallery/gallery-2026-11-12-reading-group-talk.webp 1200w"
+                 sizes="(max-width: 620px) 50vw, 280px"
+                 alt="Reading group #2, 12 Nov 2026: a speaker presents the paper, with the closing slide on a screen"
+                 width="1200" height="1600" loading="lazy">
+          </a>
+        </li>
+        <li>
+          <a href="assets/img/gallery/gallery-2026-10-29-meetup1.webp" target="_blank" rel="noopener"
+             title="Meetup #1, our launch at DFKI · 29 Oct 2026">
+            <img src="assets/img/gallery/gallery-2026-10-29-meetup1-800.webp"
+                 srcset="assets/img/gallery/gallery-2026-10-29-meetup1-800.webp 800w,
+                         assets/img/gallery/gallery-2026-10-29-meetup1.webp 1600w"
+                 sizes="(max-width: 620px) 50vw, 280px"
+                 alt="Meetup #1, our launch at DFKI, 29 Oct 2026: a full room of attendees listening"
+                 width="1600" height="961" loading="lazy">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ───────────────────────── Vision ───────────────────────── -->
   <!-- Image: page 1 of strategy/ToC-AI Safety Kaiserslautern.pdf, cropped to the headers and cells.
        Re-export it when the deck changes, and keep the alt text in step. -->
@@ -408,10 +472,11 @@
 
   <!-- ───────────────────────── Start a group ───────────────────────── -->
   <section class="section" id="start-a-group">
-    <div class="wrap split">
+    <div class="wrap">
+      <p class="eyebrow">Start a group</p>
+      <h2 class="section-title">Bring AI safety to your university</h2>
+      <div class="split">
       <div class="split-copy">
-        <p class="eyebrow">Start a group</p>
-        <h2 class="section-title">Bring AI safety to your university</h2>
         <p>
           We are reaching out to universities across Rhineland-Palatinate. If you want to start an
           AI safety group, or first want to see how one runs, tell us who you are.
@@ -501,6 +566,7 @@
           Or write to <a href="mailto:hello@aisafetykaiserslautern.org">hello@aisafetykaiserslautern.org</a>.
         </p>
       </form>
+      </div>
     </div>
   </section>
 
@@ -712,6 +778,7 @@
         <li><a href="#what-we-do">What we do</a></li>
         <li><a href="#why">Why AI safety</a></li>
         <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#vision">Vision</a></li>
         <li><a href="#resources">Resources</a></li>
         <li><a href="#join">Join us</a></li>

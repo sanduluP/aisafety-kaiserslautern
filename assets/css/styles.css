@@ -1,3 +1,20 @@
+/* Source Serif 4 (SIL OFL 1.1, assets/fonts/OFL-source-serif-4.txt), self-hosted:
+   no request to Google, which keeps the page GDPR-safe and fits font-src 'self'. */
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("../fonts/source-serif-4-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("../fonts/source-serif-4-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================================================
    AI Safety Kaiserslautern
    Single stylesheet. No build step, no external requests.
@@ -39,6 +56,7 @@
 
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
 
   color-scheme: light;
 }
@@ -133,8 +151,9 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -.034em; }
-h2 { font-size: clamp(1.75rem, 3.4vw, 2.6rem); }
+/* serif titles at normal weight; body and small headings stay sans */
+h1 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -.01em; }
+h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.75rem, 2.8vw, 2.3rem); letter-spacing: 0; }
 h3 { font-size: 1.14rem; letter-spacing: -.012em; }
 
 p { margin: 0 0 1rem; }
@@ -181,10 +200,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   padding-inline: clamp(1.1rem, 4vw, 2rem);
 }
 
-.section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+.section { padding-block: clamp(2.5rem, 5vw, 4rem); }
 .section-alt { background: var(--bg-alt); }
 
-.section-title { max-width: 20ch; }
+.section-title { max-width: none; text-wrap: balance; }   /* no single word left on a 2nd line */
 
 .section-lede {
   max-width: 62ch;
@@ -367,7 +386,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 /* ---------- Hero ---------- */
 
 .hero {
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 5.5rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem);
   background:
     radial-gradient(70ch 38ch at 8% -12%, var(--brand-soft), transparent 68%),
     var(--bg);
@@ -465,19 +484,25 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 /* ---------- What we do: picture + project card ---------- */
 
+/* the lede spans the 2-column block below, so let it run full width */
+#what-we-do .section-lede { max-width: none; }
+
 .wwd {
   display: grid;
-  /* picture is square, so the stretched card ends up the same height */
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.75rem, 4vw, 2.75rem);
-  align-items: stretch;
+  /* smaller picture; the card hugs its text instead of stretching to the picture height */
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  align-items: center;
 }
 .wwd-figure { margin: 0; }
 .wwd-figure img { display: block; width: 100%; height: auto; }
-/* the picture is drawn for a light page; give it a white panel on dark */
-:root[data-theme="dark"] .wwd-figure { padding: 1rem; background: #FFFFFF; border-radius: var(--radius-lg); }
+/* transparent picture; the dark copy has a white wordmark in the centre */
+.wwd-img-dark { display: none !important; }
+:root[data-theme="dark"] .wwd-img-light { display: none !important; }
+:root[data-theme="dark"] .wwd-img-dark { display: block !important; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .wwd-figure { padding: 1rem; background: #FFFFFF; border-radius: var(--radius-lg); }
+  :root:not([data-theme="light"]) .wwd-img-light { display: none !important; }
+  :root:not([data-theme="light"]) .wwd-img-dark { display: block !important; }
 }
 
 .project-card {
@@ -490,10 +515,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   flex-direction: column;
   justify-content: center;
 }
-.project-body { padding: clamp(1.75rem, 4vw, 2.75rem); }
-.project-card h3 { margin: 0 0 1rem; font-size: clamp(1.6rem, 2.8vw, 2.1rem); line-height: 1.2; letter-spacing: -.02em; }
+.project-body { padding: clamp(1.5rem, 3vw, 2rem); }
+.project-card h3 { margin: 0 0 1rem; font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2rem); line-height: 1.2; letter-spacing: 0; }
 .project-body p { color: var(--ink-soft); font-size: 1.08rem; }
-.project-body .project-lead { font-size: clamp(1.12rem, 1.9vw, 1.3rem); line-height: 1.5; font-weight: 600; color: var(--ink); }
+.project-body .project-lead { font-size: clamp(1.08rem, 1.6vw, 1.2rem); line-height: 1.55; font-weight: 400; color: var(--ink); }
 
 /* ---------- Split (why) ---------- */
 
@@ -504,7 +529,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   align-items: start;
 }
 .split-copy p { color: var(--ink-soft); max-width: 60ch; }
-.split .section-title { max-width: 22ch; }
+/* the section title sits above both columns */
+.section-title + .split { margin-top: 1.25rem; }
 
 .stat-stack { display: grid; gap: 1rem; }
 
@@ -712,6 +738,38 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .join-body span { font-size: .84rem; color: var(--muted); }
 .join-arrow { margin-left: auto; color: var(--accent); font-size: 1.05rem; }
 
+/* ---------- Gallery ---------- */
+
+/* mosaic: 4 columns x 2 rows of squares; 1 photo takes 2x2, 1 takes 2x1. No captions:
+   the event and date sit in alt and title, and each tile opens the full photo. */
+.gallery {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  aspect-ratio: 2 / 1;
+  gap: .6rem;
+}
+.gallery .g-big  { grid-column: span 2; grid-row: span 2; }
+.gallery .g-wide { grid-column: span 2; }
+.gallery a { display: block; height: 100%; overflow: hidden; cursor: zoom-in; }
+.gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.gallery .g-talk { object-position: 50% 60%; }   /* keep speaker and screen in frame */
+.gallery a:hover img { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } }
+@media (max-width: 620px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: 44vw; aspect-ratio: auto; }
+  .gallery .g-big { grid-row: span 1; }
+}
+
 /* ---------- Resources ---------- */
 
 .res-columns {
@@ -770,7 +828,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 /* ---------- Supported by ---------- */
 
-.supported { padding-block: 0 clamp(3.5rem, 8vw, 6rem); }
+.supported { padding-block: 0 clamp(2.5rem, 5vw, 4rem); }
 
 .supported-panel {
   --sage:        #5F7A59;   /* Safe AI Germany deep sage */
