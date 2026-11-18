@@ -12,7 +12,7 @@
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=20261118e">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261118y">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -73,18 +73,41 @@
 
   <!-- ───────────────────────── Hero ───────────────────────── -->
   <section class="hero">
-    <div class="wrap hero-grid">
+    <!-- Skyline strip: Kaiserslautern landmarks with a network inside (assets/js/hero-net.js).
+         Facts checked on Wikipedia (en/de "Kaiserslautern", "Fritz-Walter-Stadion",
+         "German Research Center for Artificial Intelligence"), 18 Nov 2026. -->
+    <div class="skyline-row">
+      <canvas class="hero-net" aria-hidden="true"></canvas>
+      <div class="wrap skyline-row-inner">
+        <details class="skyline-story">
+          <summary>About the skyline</summary>
+          <div class="skyline-panel">
+            <p>Landmarks from different eras of Kaiserslautern, linked like a network.</p>
+            <dl>
+              <dt>Stiftskirche</dt>
+              <dd>The oldest church, built 1250&ndash;1350.</dd>
+              <dt>Fruchthalle</dt>
+              <dd>Seat of a provisional government in the 1849 revolution.</dd>
+              <dt>Rathaus</dt>
+              <dd>The town hall tower, with a terrace 84&nbsp;m up.</dd>
+              <dt>Betzenberg</dt>
+              <dd>Fritz-Walter-Stadion, home of 1.&nbsp;FC Kaiserslautern since 1920.</dd>
+              <dt>DFKI</dt>
+              <dd>The German Research Center for Artificial Intelligence, founded in 1988 and headquartered here.</dd>
+              <dt>The red dot</dt>
+              <dd>Ideas travelling through the city.</dd>
+            </dl>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div class="wrap">
+      <h1>AI is advancing faster than our understanding of it.</h1>
+      <div class="hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Local community · Kaiserslautern, Germany</p>
-        <h1>AI Safety<br>Kaiserslautern</h1>
         <p class="lede">
-          Conversations, events, and community for people who want advanced AI to go well.
-        </p>
-        <p class="body-lg">
-          We are a local group for anyone in and around Kaiserslautern who wants to think
-          carefully about advanced AI systems &mdash; alignment, governance, evaluations, and
-          real&#8209;world impact. We host reading groups, talks, and informal meetups for
-          experienced practitioners and complete newcomers alike.
+          AI Safety Kaiserslautern is a local community at RPTU and DFKI. We learn, discuss and
+          research how to make advanced AI safe.
         </p>
         <div class="btn-row">
           <a class="btn btn-primary" href="#join">Join the community</a>
@@ -92,25 +115,20 @@
         </div>
         <p class="hero-note">
           Everyone is welcome &mdash; students, researchers, engineers, and the simply curious.
-          No background in machine learning required.
         </p>
       </div>
 
-      <!-- Brand panel. If you would rather show a photo of Kaiserslautern here,
-           drop the file at assets/img/kaiserslautern.jpg and replace this whole
-           block with:
-             <div class="hero-media is-photo">
-               <img src="assets/img/kaiserslautern.jpg" alt="View over Kaiserslautern"
-                    width="900" height="1100" loading="eager">
-             </div>
-           Licence-clear sources: unsplash.com / pexels.com (credit the photographer). -->
-      <div class="hero-media">
-        <picture>
-          <source srcset="assets/img/logo-mark.webp" type="image/webp">
-          <img src="assets/img/logo-mark.png"
-               alt="AI Safety Kaiserslautern emblem: the Kaiserslautern town hall inside a shield, over circuit traces"
-               width="349" height="512" loading="eager">
-        </picture>
+      <!-- What we offer, as a transparent picture; the dark copy has a white wordmark.
+           Source: slide 1 of talks/intro-talk/AISK Launch Deck v12-2.pptx. -->
+      <div class="hero-art">
+        <img class="img-on-light" src="assets/img/what-we-do-light.webp?v=20261118"
+             alt="What AI Safety Kaiserslautern offers: Learn, Network, Reading group, Workshop, Talk and meet-up, AI Movie night"
+             width="1080" height="1078" loading="eager" fetchpriority="high">
+        <img class="img-on-dark" src="assets/img/what-we-do-dark.webp?v=20261118" alt=""
+             width="1080" height="1078" loading="eager" aria-hidden="true">
+        <!-- the green dot circles the centre clockwise, as on the launch slide -->
+        <span class="orbit-dot" aria-hidden="true"></span>
+      </div>
       </div>
     </div>
   </section>
@@ -119,23 +137,16 @@
   <section class="section" id="what-we-do">
     <div class="wrap">
       <p class="eyebrow">What we do</p>
-      <h2 class="section-title">Learn, meet, and explore AI safety together</h2>
+      <h2 class="section-title">Learn the field, then work on real problems</h2>
       <p class="section-lede">
-        Reading groups, talks, workshops and movie nights, open to anyone curious about
-        making advanced AI go well.
+        Besides our events, we study one risk area in depth, and we are preparing a structured
+        programme for people who want to go further.
       </p>
 
       <div class="wwd">
-        <figure class="wwd-figure">
-          <img class="wwd-img-light" src="assets/img/what-we-do-light.webp"
-               alt="What AI Safety Kaiserslautern offers: Learn, Network, Reading group, Workshop, Talk and meet-up, AI Movie night"
-               width="1080" height="1078" loading="lazy">
-          <img class="wwd-img-dark" src="assets/img/what-we-do-dark.webp" alt=""
-               width="1080" height="1078" loading="lazy" aria-hidden="true">
-        </figure>
-
         <article class="project-card">
           <div class="project-body">
+            <p class="project-kicker">Research focus</p>
             <h3>Multi&#8209;agent collusion</h3>
             <p class="project-lead">
               As AI systems are deployed in groups, some of the most serious risks come from
@@ -147,6 +158,22 @@
             </p>
           </div>
         </article>
+
+        <article class="project-card">
+          <div class="project-body">
+            <p class="project-kicker">Coming soon</p>
+            <h3>Technical AI Safety Fellowship</h3>
+            <p class="project-lead">
+              A small, selected group working through a technical AI safety curriculum together:
+              how models are trained to be safe, how they are tested, how researchers look inside
+              them, and how to start contributing.
+            </p>
+            <p>
+              Stay tuned. We will announce dates and applications in our Signal group and on LinkedIn.
+            </p>
+            <p class="link-row"><a class="link-arrow" href="#join">Get notified</a></p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -155,7 +182,7 @@
   <section class="section section-alt" id="why">
     <div class="wrap">
       <p class="eyebrow">Why AI safety</p>
-      <h2 class="section-title">The technology is moving faster than our understanding of it</h2>
+      <h2 class="section-title">Why we work on AI safety</h2>
       <div class="split">
       <div class="split-copy">
         <p>
@@ -507,6 +534,7 @@
       <form class="form-card" id="start-form" action="/api/start-group" method="post">
         <h3>Tell us about you</h3>
 
+        <div class="field-row">
         <div class="field">
           <label for="sg-name">Your name</label>
           <input id="sg-name" name="Name" type="text" autocomplete="name" required maxlength="100">
@@ -516,7 +544,9 @@
           <label for="sg-email">Your email</label>
           <input id="sg-email" name="Email" type="email" autocomplete="email" required maxlength="200">
         </div>
+        </div>
 
+        <div class="field-row">
         <div class="field">
           <label for="sg-uni">University</label>
           <input id="sg-uni" name="University" type="text" list="sg-unis" autocomplete="organization" required maxlength="200"
@@ -547,10 +577,11 @@
             <option>other</option>
           </select>
         </div>
+        </div>
 
         <div class="field">
           <label for="sg-why">What motivates you to start a group?</label>
-          <textarea id="sg-why" name="Motivation" rows="4" required maxlength="4000"></textarea>
+          <textarea id="sg-why" name="Motivation" rows="3" required maxlength="4000"></textarea>
         </div>
 
         <!-- hidden from people; bots that fill it are ignored -->
@@ -823,5 +854,6 @@
 </footer>
 
 <script src="assets/js/main.js?v=20261104"></script>
+<script src="assets/js/hero-net.js?v=20261118r" defer></script>
 </body>
 </html>

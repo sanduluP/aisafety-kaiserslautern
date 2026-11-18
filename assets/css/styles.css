@@ -152,7 +152,7 @@ h1, h2, h3 {
 }
 
 /* serif titles at normal weight; body and small headings stay sans */
-h1 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -.01em; }
+h1 { font-family: var(--font-serif); font-weight: 600; font-size: clamp(2.1rem, 4.4vw, 3.1rem); letter-spacing: -.01em; }
 h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.75rem, 2.8vw, 2.3rem); letter-spacing: 0; }
 h3 { font-size: 1.14rem; letter-spacing: -.012em; }
 
@@ -169,7 +169,7 @@ a:hover { text-decoration-color: currentColor; }
 img, svg { max-width: 100%; }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--brand);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -182,8 +182,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   top: .5rem;
   z-index: 200;
   padding: .6rem 1rem;
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--brand);
+  color: var(--surface);
   border-radius: 8px;
   text-decoration: none;
 }
@@ -299,8 +299,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   white-space: nowrap;
 }
 .nav > a:hover { background: var(--bg-alt); color: var(--ink); }
-.nav > a.btn-primary { color: var(--on-accent); margin-left: .45rem; }
-.nav > a.btn-primary:hover { color: var(--on-accent); }
+.nav > a.btn-primary { color: var(--surface); margin-left: .45rem; }
+.nav > a.btn-primary:hover { color: #FFFFFF; }
 
 .header-tools { display: flex; align-items: center; gap: .3rem; }
 
@@ -346,15 +346,15 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 }
 .btn:active { transform: translateY(1px); }
 
-.btn-primary { background: var(--accent); color: var(--on-accent); }
-.btn-primary:hover { background: var(--accent-ink); }
-
+/* main buttons use the navy of the Register button; no red buttons */
+.btn-primary,
 .btn-brand {
   background: var(--brand);
   color: var(--surface);
   border-color: var(--brand-deep);
   box-shadow: 0 0 0 1px var(--brand), var(--shadow-sm);   /* visible edge on every background */
 }
+.btn-primary:hover,
 .btn-brand:hover { background: var(--brand-deep); color: #FFFFFF; }
 
 .btn-ghost {
@@ -386,7 +386,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 /* ---------- Hero ---------- */
 
 .hero {
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem);
+  position: relative;
+  overflow: hidden;
+  /* no top padding: the skyline strip sits right under the header */
+  padding-block: 0 clamp(2.5rem, 5vw, 4rem);
   background:
     radial-gradient(70ch 38ch at 8% -12%, var(--brand-soft), transparent 68%),
     var(--bg);
@@ -396,17 +399,55 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
   gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  align-items: center;  /* text sits level with the middle of the picture */
 }
 
-.hero h1 { margin-bottom: .35em; }
+/* skyline strip at the top of the hero (hero-net.js): full width, quiet, informative */
+.skyline-row { position: relative; height: 52px; margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem); }
+.skyline-row .hero-net { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.skyline-row-inner { position: relative; height: 100%; display: flex; justify-content: flex-end; align-items: flex-end; padding-bottom: .35rem; }
+
+/* "About the skyline": a small, quiet link; the panel opens below it */
+.skyline-story { position: relative; z-index: 2; font-size: .76rem; }
+.skyline-story summary {
+  list-style: none;
+  cursor: pointer;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+}
+.skyline-story summary:hover,
+.skyline-story[open] summary { color: var(--ink); }
+.skyline-story summary::-webkit-details-marker { display: none; }
+.skyline-story summary::before { content: "i"; display: inline-grid; place-items: center; width: 1.05em; height: 1.05em;
+  margin-right: .4em; border: 1px solid currentColor; border-radius: 50%; font-size: .8em; font-weight: 700; font-style: italic; }
+.skyline-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + .4rem);
+  width: min(22rem, calc(100vw - 2rem));
+  padding: .85rem 1rem .4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  color: var(--ink-soft);
+  font-size: .82rem;
+  line-height: 1.45;
+}
+.skyline-panel p { margin-bottom: .6rem; }
+.skyline-panel dt { font-weight: 600; color: var(--ink); }
+.skyline-panel dd { margin: 0 0 .5rem; }
+
+.hero h1 { margin-bottom: .5em; text-wrap: balance; }   /* 1 line above both columns on desktop */
 
 .lede {
   font-size: clamp(1.15rem, 2.1vw, 1.4rem);
   font-weight: 500;
   color: var(--ink-soft);
-  max-width: 30ch;
-  margin-bottom: 1.15rem;
+  max-width: 34ch;
+  margin-bottom: 1.5rem;
   line-height: 1.4;
 }
 
@@ -416,46 +457,40 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   max-width: 48ch;
 }
 
-/* Brand panel standing in for a photo. Swap the whole block for an <img>
-   once a picture of Kaiserslautern is available — see index.html. */
-.hero-media {
-  position: relative;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 5;
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background:
-    radial-gradient(120% 90% at 50% 0%, #1B3D74 0%, transparent 60%),
-    linear-gradient(160deg, #12305E 0%, #071527 100%);
-}
-.hero-media::after {
-  /* faint circuit grid, echoing the traces in the mark */
-  content: "";
+/* hero picture: transparent, so it sits on the page background in both themes */
+.hero-art { position: relative; justify-self: end; width: 100%; max-width: 400px; }
+/* green dot travelling the inner hexagon clockwise, 14 s per round (launch slide timing).
+   Points are % of the picture, taken from the slide's motion path. */
+.orbit-dot {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-  background-size: 46px 46px;
-  mask-image: radial-gradient(72% 62% at 50% 50%, #000 20%, transparent 78%);
-  -webkit-mask-image: radial-gradient(72% 62% at 50% 50%, #000 20%, transparent 78%);
-  pointer-events: none;
+  left: 62.71%;
+  top: 27.07%;
+  width: 1.9%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #92D050;
+  box-shadow: 0 0 0 3px rgba(146, 208, 80, .3), 0 0 12px rgba(146, 208, 80, .7);
+  transform: translate(-50%, -50%);
+  animation: orbit 14s linear infinite;
 }
-/* let the <img> be the grid item so the sizing below resolves against the panel */
-.hero-media picture { display: contents; }
-
-.hero-media img {
-  position: relative;
-  z-index: 1;
-  width: min(74%, 300px);
-  height: auto;
-  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, .45));
+@keyframes orbit {
+  0%      { left: 62.71%; top: 27.07%; }
+  16.667% { left: 75.76%; top: 49.71%; }
+  33.333% { left: 62.71%; top: 72.35%; }
+  50%     { left: 36.61%; top: 72.35%; }
+  66.667% { left: 23.55%; top: 49.71%; }
+  83.333% { left: 36.61%; top: 27.07%; }
+  100%    { left: 62.71%; top: 27.07%; }
 }
-.hero-media.is-photo { display: block; padding: 0; background: var(--bg-alt); }
-.hero-media.is-photo img { width: 100%; height: 100%; object-fit: cover; filter: none; }
+@media (prefers-reduced-motion: reduce) { .orbit-dot { animation: none; } }
+.hero-art img { display: block; width: 100%; height: auto; }
+.img-on-dark { display: none !important; }
+:root[data-theme="dark"] .img-on-light { display: none !important; }
+:root[data-theme="dark"] .img-on-dark { display: block !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .img-on-light { display: none !important; }
+  :root:not([data-theme="light"]) .img-on-dark { display: block !important; }
+}
 
 /* ---------- Cards ---------- */
 
@@ -482,27 +517,24 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   color: var(--brand);
 }
 
-/* ---------- What we do: picture + project card ---------- */
+/* ---------- What we do: research focus + upcoming programme ---------- */
 
 /* the lede spans the 2-column block below, so let it run full width */
 #what-we-do .section-lede { max-width: none; }
 
 .wwd {
   display: grid;
-  /* smaller picture; the card hugs its text instead of stretching to the picture height */
-  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
-  gap: clamp(1.5rem, 3.5vw, 2.5rem);
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  align-items: stretch;
 }
-.wwd-figure { margin: 0; }
-.wwd-figure img { display: block; width: 100%; height: auto; }
-/* transparent picture; the dark copy has a white wordmark in the centre */
-.wwd-img-dark { display: none !important; }
-:root[data-theme="dark"] .wwd-img-light { display: none !important; }
-:root[data-theme="dark"] .wwd-img-dark { display: block !important; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .wwd-img-light { display: none !important; }
-  :root:not([data-theme="light"]) .wwd-img-dark { display: block !important; }
+.project-kicker {
+  margin: 0 0 .5rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .project-card {
@@ -513,10 +545,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .project-body { padding: clamp(1.5rem, 3vw, 2rem); }
-.project-card h3 { margin: 0 0 1rem; font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2rem); line-height: 1.2; letter-spacing: 0; }
+.project-card h3 { margin: 0 0 1rem; font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.4rem, 2.1vw, 1.65rem); line-height: 1.2; letter-spacing: 0; }
 .project-body p { color: var(--ink-soft); font-size: 1.08rem; }
 .project-body .project-lead { font-size: clamp(1.08rem, 1.6vw, 1.2rem); line-height: 1.55; font-weight: 400; color: var(--ink); }
 
@@ -529,6 +561,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   align-items: start;
 }
 .split-copy p { color: var(--ink-soft); max-width: 60ch; }
+/* Why AI safety: narrower text, wider cards, so both columns end at a similar height */
+#why .split { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
 /* the section title sits above both columns */
 .section-title + .split { margin-top: 1.25rem; }
 
@@ -540,7 +574,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--brand);
 }
 .stat h3 { margin-bottom: .55rem; }
 .stat p { color: var(--muted); font-size: .93rem; }
@@ -652,22 +686,25 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 .form-card {
   position: relative;
-  padding: 1.6rem 1.5rem 1.4rem;
+  padding: 1.35rem 1.4rem 1.2rem;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
 }
 .form-card h3 { margin-top: 0; }
-.field { margin: 0 0 1rem; padding: 0; border: 0; min-width: 0; }
+.field { margin: 0 0 .75rem; padding: 0; border: 0; min-width: 0; }
+/* 2 short fields side by side, to keep the form low */
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 .75rem; }
+@media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 .field > label,
-.field > legend { display: block; margin-bottom: .35rem; padding: 0; font-size: .88rem; font-weight: 600; }
+.field > legend { display: block; margin-bottom: .3rem; padding: 0; font-size: .88rem; font-weight: 600; }
 .field input[type="text"],
 .field input[type="email"],
 .field select,
 .field textarea {
   width: 100%;
-  padding: .6rem .75rem;
+  padding: .5rem .7rem;
   font: inherit;
   font-size: .95rem;
   color: var(--ink);
@@ -675,10 +712,13 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   border: 1px solid var(--line-strong);
   border-radius: 10px;
 }
+.field input[type="text"],
+.field input[type="email"],
+.field select { height: 2.5rem; }   /* inputs and the dropdown line up in a row */
 .field textarea { resize: vertical; }
 .field input:focus,
 .field select:focus,
-.field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-card .btn { width: 100%; justify-content: center; margin-top: .25rem; }
 .form-card .btn:disabled { opacity: .6; cursor: wait; }
@@ -721,7 +761,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   text-decoration: none;
   transition: border-color .15s ease, transform .15s ease;
 }
-.join-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.join-card:hover { border-color: var(--brand); transform: translateY(-2px); }
 
 .join-icon {
   display: grid;
@@ -740,7 +780,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 /* ---------- Gallery ---------- */
 
-/* mosaic: 4 columns x 2 rows of squares; 1 photo takes 2x2, 1 takes 2x1. No captions:
+/* mosaic: 4 columns x 2 rows of 4:3 tiles; 1 photo takes 2x2 (so it shows uncropped), 1 takes 2x1. No captions:
    the event and date sit in alt and title, and each tile opens the full photo. */
 .gallery {
   list-style: none;
@@ -749,7 +789,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 8 / 3;   /* each cell 4:3, so the 2x2 tile is 4:3 like the photo */
   gap: .6rem;
 }
 .gallery .g-big  { grid-column: span 2; grid-row: span 2; }
@@ -974,9 +1014,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .callout {
   padding: 1.1rem 1.25rem;
   margin: 1.5rem 0;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--brand);
   border-radius: 0 10px 10px 0;
-  background: var(--accent-soft);
+  background: var(--brand-soft);
   font-size: .93rem;
 }
 .callout p { margin-bottom: .5rem; }
@@ -986,12 +1026,11 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 @media (max-width: 940px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-media { max-width: 440px; aspect-ratio: 4 / 3.4; }
+  .hero-art { justify-self: center; max-width: 380px; }
   .lede { max-width: 40ch; }
   .split { grid-template-columns: 1fr; }
   .cards-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wwd { grid-template-columns: 1fr; }
-  .wwd-figure { width: 100%; max-width: 380px; margin-inline: auto; }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-brand { grid-column: 1 / -1; }
 }
