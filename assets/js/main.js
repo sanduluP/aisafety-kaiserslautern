@@ -131,10 +131,6 @@
     var sent = new URLSearchParams(window.location.search).get('sent');
     if (sent === '1') showStatus(true, 'Thanks! We got your message and will get back to you.');
     if (sent === '0') showStatus(false, failText);
-    // the form sits in a collapsed <details>; open it so the result is visible
-    var startToggle = startForm.closest('details');
-    if (startToggle && (sent === '1' || sent === '0')) startToggle.open = true;
-
     startForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var button = startForm.querySelector('button[type="submit"]');
@@ -158,6 +154,31 @@
         button.disabled = false;
       });
     });
+  }
+
+  /* ---- Count a number up once, when it scrolls into view (data-count-to) ---- */
+  var counters = document.querySelectorAll('[data-count-to]');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (counters.length && !calm && 'IntersectionObserver' in window) {
+    var countUp = function (el) {
+      var to = parseInt(el.getAttribute('data-count-to'), 10);
+      var t0 = null;
+      var step = function (ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / 1400);
+        el.textContent = String(Math.round(to * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    };
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        seen.unobserve(e.target);
+        countUp(e.target);
+      });
+    }, { threshold: 0.6 });
+    Array.prototype.forEach.call(counters, function (el) { seen.observe(el); });
   }
 
   /* ---- Footer year ---- */

@@ -151,10 +151,16 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-/* serif titles at normal weight; body and small headings stay sans */
+/* titles: bold sans, tightly set, with one phrase picked out in italic serif (em.accent) */
 /* h1 matches the section titles (h2), so section 1 looks like every other section */
-h1 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.75rem, 2.8vw, 2.3rem); letter-spacing: 0; }
-h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.75rem, 2.8vw, 2.3rem); letter-spacing: 0; }
+h1, h2 { font-size: clamp(1.85rem, 3.1vw, 2.6rem); font-weight: 600; line-height: 1.1; letter-spacing: -.024em; }
+h1 .accent, h2 .accent, h3 .accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  color: var(--brand);
+}
 h3 { font-size: 1.14rem; letter-spacing: -.012em; }
 
 p { margin: 0 0 1rem; }
@@ -416,6 +422,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 /* "About the skyline": a small, quiet link; the panel opens below it */
 .skyline-story { position: relative; z-index: 2; font-size: .76rem; }
 .skyline-story summary {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
   list-style: none;
   cursor: pointer;
   padding: .15rem .55rem;
@@ -426,8 +435,22 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .skyline-story summary:hover,
 .skyline-story[open] summary { color: var(--ink); }
 .skyline-story summary::-webkit-details-marker { display: none; }
-.skyline-story summary::before { content: "i"; display: inline-grid; place-items: center; width: 1.05em; height: 1.05em;
-  margin-right: .4em; border: 1px solid currentColor; border-radius: 50%; font-size: .8em; font-weight: 700; font-style: italic; }
+/* info mark: an upright "i" centred in a small ring */
+.skyline-story summary::before {
+  content: "i";
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-size: 10px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1;
+}
 .skyline-panel {
   position: absolute;
   right: 0;
@@ -641,7 +664,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   justify-content: flex-start;
 }
 .project-body { padding: clamp(1.5rem, 3vw, 2rem); }
-.project-card h3 { margin: 0 0 1rem; font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.4rem, 2.1vw, 1.65rem); line-height: 1.2; letter-spacing: 0; }
+.project-card h3 { margin: 0 0 1rem; font-weight: 600; font-size: clamp(1.4rem, 2.1vw, 1.65rem); line-height: 1.2; letter-spacing: -.022em; }
 .project-body p { color: var(--ink-soft); font-size: .95rem; }
 .project-body .project-lead { font-size: 1.05rem; line-height: 1.6; font-weight: 400; color: var(--ink); }
 
@@ -654,8 +677,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   align-items: start;
 }
 .split-copy p { color: var(--ink-soft); max-width: 60ch; }
+.split-copy .eyebrow { color: var(--accent); }
 /* Why AI safety: narrower text, wider cards, so both columns end at a similar height */
-#why .split { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+#why .split { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); }
 /* the section title sits above both columns */
 .section-title + .split { margin-top: 1.25rem; }
 
@@ -667,9 +691,35 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  border-left: 3px solid var(--brand);
+  transition: transform .22s ease, box-shadow .22s ease;
 }
+#why .stat { padding: 1.75rem; border-radius: 18px; }
+#why .stat h3 { font-size: 1.25rem; }
+.stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .stat h3 { margin-bottom: .55rem; }
+
+/* the survey number, set large; main.js counts it up once */
+.figure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-block: 2rem;
+  padding-block: 1.75rem;
+  border-block: 1px solid var(--line-strong);
+}
+.split-copy .figure-num {
+  flex: none;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(5rem, 9vw, 7.75rem);
+  line-height: .9;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+/* fixed room for 2 digits, so the text beside it does not move while the number counts */
+.figure-num [data-count-to] { display: inline-block; min-width: 2ch; text-align: right; }
+.split-copy .figure-text { flex: 1 1 15rem; margin: 0; font-size: 1rem; }
 .stat p { color: var(--muted); font-size: .93rem; }
 
 .stat-kicker {
@@ -767,62 +817,48 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 /* ---------- Start a group ---------- */
 
-.offer-list { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: .9rem; }
+#start-a-group .split { align-items: start; }
+.split-copy .split-intro { font-size: 1.05rem; }
+
+/* what we offer: a numbered list, each row between thin rules */
+.offer-list { list-style: none; padding: 0; margin: 2rem 0 0; counter-reset: offer; border-bottom: 1px solid var(--line); }
 .offer-list li {
-  display: flex;
-  flex-direction: column;
-  padding-left: 1rem;
-  border-left: 3px solid var(--brand-soft);
+  counter-increment: offer;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  column-gap: 1rem;
+  padding-block: 1.15rem;
+  border-top: 1px solid var(--line);
 }
-.offer-list strong { font-size: .97rem; }
-.offer-list span { color: var(--muted); font-size: .93rem; }
+.offer-list li::before {
+  content: counter(offer, decimal-leading-zero);
+  grid-row: span 2;
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  line-height: 1;
+  color: var(--brand);
+}
+.offer-list strong { font-size: 1.03rem; }
+.offer-list span { color: var(--muted); font-size: .95rem; }
 
 .form-card {
   position: relative;
-  padding: 1.35rem 1.4rem 1.2rem;
+  padding: 2rem;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
 }
-.form-card h3 { margin-top: 0; }
-/* collapsible form: the card shows only its title until opened */
-.form-toggle { padding: 0; }
-.form-toggle > summary {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.05rem 1.4rem;
-}
-.form-toggle > summary::-webkit-details-marker { display: none; }
-.form-toggle-title strong { display: block; font-size: 1.05rem; color: var(--ink); }
-.form-toggle-title span { font-size: .85rem; color: var(--muted); }
-.form-toggle-icon {
-  flex: none;
-  width: .6rem;
-  height: .6rem;
-  border-right: 2px solid var(--brand);
-  border-bottom: 2px solid var(--brand);
-  transform: rotate(45deg) translateY(-2px);
-  transition: transform .2s ease;
-}
-.form-toggle[open] .form-toggle-icon { transform: rotate(-135deg) translate(-2px, 0); }
-.form-toggle .form-body { padding: 0 1.4rem 1.2rem; }
-.field { margin: 0 0 .75rem; padding: 0; border: 0; min-width: 0; }
-/* 2 short fields side by side, to keep the form low */
-.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 .75rem; }
-@media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
+.form-card h3 { margin: 0 0 1.25rem; font-size: 1.4rem; letter-spacing: -.02em; }
+.field { margin: 0 0 1rem; padding: 0; border: 0; min-width: 0; }
 .field > label,
-.field > legend { display: block; margin-bottom: .3rem; padding: 0; font-size: .88rem; font-weight: 600; }
+.field > legend { display: block; margin-bottom: .4rem; padding: 0; font-size: .88rem; font-weight: 600; }
 .field input[type="text"],
 .field input[type="email"],
 .field select,
 .field textarea {
   width: 100%;
-  padding: .5rem .7rem;
+  padding: .7rem .8rem;
   font: inherit;
   font-size: .95rem;
   color: var(--ink);
@@ -832,7 +868,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 }
 .field input[type="text"],
 .field input[type="email"],
-.field select { height: 2.5rem; }   /* inputs and the dropdown line up in a row */
+.field select { height: 2.9rem; }
 .field textarea { resize: vertical; }
 .field input:focus,
 .field select:focus,
@@ -942,15 +978,21 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   --sage-ink:    #44583F;
   --sage-soft:   #EEF3EC;
   --sage-line:   #D3DFCF;
-  padding: clamp(2rem, 5vw, 3rem);
+  /* words on the left, logo on the right; they stack when the row gets narrow */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.5rem, 5vw, 3rem);
   border-radius: var(--radius-lg);
   background: var(--sage-soft);
   border: 1px solid var(--sage-line);
   color: var(--sage-ink);
-  text-align: center;
 }
+.supported-copy { flex: 1 1 18rem; min-width: 0; }
 .supported-label {
-  margin: 0 0 1.1rem;
+  margin: 0 0 .5rem;
   font-size: .74rem;
   font-weight: 700;
   letter-spacing: .13em;
@@ -958,18 +1000,20 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   color: var(--sage);
 }
 .supported-logo {
-  display: inline-block;
+  flex: 0 1 300px;
+  min-width: 0;
+  display: block;
   line-height: 0;
   border-radius: 8px;
   transition: opacity .15s ease;
 }
 .supported-logo:hover { opacity: .8; }
-.saige-logo { width: min(320px, 78vw); height: auto; }
+.saige-logo { width: 100%; height: auto; }
 .saige-logo-on-dark { display: none; }
 .supported-note {
-  margin: 1.1rem auto 0;
-  max-width: 46ch;
-  font-size: .9rem;
+  margin: 0;
+  text-wrap: balance;   /* one line when it fits; never a single word left over */
+  font-size: .97rem;
   color: var(--sage-ink);
 }
 
@@ -1002,7 +1046,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, .8fr));
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, .8fr));
   gap: clamp(1.75rem, 4vw, 3rem);
 }
 
@@ -1095,7 +1139,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   .hero-grid { grid-template-columns: 1fr; }
   .hero-art { justify-self: center; max-width: 380px; }
   .lede { max-width: 40ch; }
-  .split { grid-template-columns: 1fr; }
+  .split,
+  #why .split { grid-template-columns: 1fr; }   /* the id rule above would otherwise keep 2 columns */
   .cards-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wwd { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
