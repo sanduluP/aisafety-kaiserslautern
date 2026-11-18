@@ -12,7 +12,7 @@
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=20261118y">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261119f">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -54,7 +54,6 @@
       <a href="#vision">Vision</a>
       <a href="#start-a-group">Start a group</a>
       <a href="#resources">Resources</a>
-      <a class="btn btn-primary btn-sm" href="#join">Join us</a>
     </nav>
 
     <div class="header-tools">
@@ -74,8 +73,9 @@
   <!-- ───────────────────────── Hero ───────────────────────── -->
   <section class="hero">
     <!-- Skyline strip: Kaiserslautern landmarks with a network inside (assets/js/hero-net.js).
-         Facts checked on Wikipedia (en/de "Kaiserslautern", "Fritz-Walter-Stadion",
-         "German Research Center for Artificial Intelligence"), 18 Nov 2026. -->
+         Facts checked 18 Nov 2026: Wikipedia (en/de "Kaiserslautern", "Fritz-Walter-Stadion",
+         "German Research Center for Artificial Intelligence", "Max Planck Institute for Software
+         Systems"), rptu.de (history page), iese.fraunhofer.de, itwm.fraunhofer.de. -->
     <div class="skyline-row">
       <canvas class="hero-net" aria-hidden="true"></canvas>
       <div class="wrap skyline-row-inner">
@@ -92,6 +92,12 @@
               <dd>The town hall tower, with a terrace 84&nbsp;m up.</dd>
               <dt>Betzenberg</dt>
               <dd>Fritz-Walter-Stadion, home of 1.&nbsp;FC Kaiserslautern since 1920.</dd>
+              <dt>RPTU</dt>
+              <dd>Rheinland-Pf&auml;lzische Technische Universit&auml;t Kaiserslautern-Landau, formed in 2023.</dd>
+              <dt>Fraunhofer IESE and ITWM</dt>
+              <dd>Institutes for experimental software engineering and for industrial mathematics.</dd>
+              <dt>MPI-SWS</dt>
+              <dd>Max Planck Institute for Software Systems, founded in 2004, with sites here and in Saarbr&uuml;cken.</dd>
               <dt>DFKI</dt>
               <dd>The German Research Center for Artificial Intelligence, founded in 1988 and headquartered here.</dd>
               <dt>The red dot</dt>
@@ -102,7 +108,7 @@
       </div>
     </div>
     <div class="wrap">
-      <h1>AI is advancing faster than our understanding of it.</h1>
+      <h1>Making advanced AI safe, together.</h1>
       <div class="hero-grid">
       <div class="hero-copy">
         <p class="lede">
@@ -110,22 +116,41 @@
           research how to make advanced AI safe.
         </p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="#join">Join the community</a>
-          <a class="btn btn-ghost" href="#events">Upcoming events</a>
+          <a class="btn btn-primary" href="#events">Upcoming events</a>
+          <a class="btn btn-ghost" href="#what-we-do">What we do</a>
         </div>
-        <p class="hero-note">
-          Everyone is welcome &mdash; students, researchers, engineers, and the simply curious.
-        </p>
+        <!-- Stay up to date: a row under the buttons on small screens; on wide screens a small
+             bar fixed at the right edge that stays while scrolling (styles.css, .hero-follow) -->
+        <nav class="hero-follow" id="follow" aria-label="Stay up to date">
+          <span class="hero-follow-label">Stay up to date</span>
+          <a class="icon-link" href="https://signal.group/#CjQKIJROV0Q8fZuMW2Enf7PxpZ2H-xfHYSIsQhwiZB-bFXzsEhBNLP00tWnXSX2ShsEN9pTD" target="_blank" rel="noopener" aria-label="Signal group" title="Signal group">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12.5" cy="11.5" r="8" stroke-dasharray="3.1 1.7"/><path d="M6.6 17.6 5 21.2l4-1.3"/></svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/company/ai-safety-kaiserslautern" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-3.6c0-1.6 1-2.6 2.3-2.6s2.2 1 2.2 2.6V17"/></svg>
+          </a>
+          <a class="icon-link" href="mailto:hello@aisafetykaiserslautern.org" aria-label="Email us" title="Email us">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 1 0 5.2 15.9"/><circle cx="12" cy="12" r="3.4"/><path d="M15.4 12v1.6a2.6 2.6 0 0 0 5.2 0V12a8.6 8.6 0 0 0-2.6-6.2"/></svg>
+          </a>
+        </nav>
       </div>
 
       <!-- What we offer, as a transparent picture; the dark copy has a white wordmark.
            Source: slide 1 of talks/intro-talk/AISK Launch Deck v12-2.pptx. -->
       <div class="hero-art">
-        <img class="img-on-light" src="assets/img/what-we-do-light.webp?v=20261118"
+        <!-- layered: the wordmark (light/dark copy) plus 6 blades; each blade pops out while the
+             green dot runs along its edge (styles.css, .blade). Layers from the launch slide. -->
+        <img class="img-on-light" src="assets/img/hero/wwd-base-light.webp"
              alt="What AI Safety Kaiserslautern offers: Learn, Network, Reading group, Workshop, Talk and meet-up, AI Movie night"
              width="1080" height="1078" loading="eager" fetchpriority="high">
-        <img class="img-on-dark" src="assets/img/what-we-do-dark.webp?v=20261118" alt=""
+        <img class="img-on-dark" src="assets/img/hero/wwd-base-dark.webp" alt=""
              width="1080" height="1078" loading="eager" aria-hidden="true">
+        <img class="blade blade-learn" src="assets/img/hero/wwd-blade-1.webp" alt="" width="1080" height="1078" aria-hidden="true">
+        <img class="blade blade-network" src="assets/img/hero/wwd-blade-2.webp" alt="" width="1080" height="1078" aria-hidden="true">
+        <img class="blade blade-workshop" src="assets/img/hero/wwd-blade-3.webp" alt="" width="1080" height="1078" aria-hidden="true">
+        <img class="blade blade-movie" src="assets/img/hero/wwd-blade-4.webp" alt="" width="1080" height="1078" aria-hidden="true">
+        <img class="blade blade-talk" src="assets/img/hero/wwd-blade-5.webp" alt="" width="1080" height="1078" aria-hidden="true">
+        <img class="blade blade-reading" src="assets/img/hero/wwd-blade-6.webp" alt="" width="1080" height="1078" aria-hidden="true">
         <!-- the green dot circles the centre clockwise, as on the launch slide -->
         <span class="orbit-dot" aria-hidden="true"></span>
       </div>
@@ -171,7 +196,7 @@
             <p>
               Stay tuned. We will announce dates and applications in our Signal group and on LinkedIn.
             </p>
-            <p class="link-row"><a class="link-arrow" href="#join">Get notified</a></p>
+            <p class="link-row"><a class="link-arrow" href="https://signal.group/#CjQKIJROV0Q8fZuMW2Enf7PxpZ2H-xfHYSIsQhwiZB-bFXzsEhBNLP00tWnXSX2ShsEN9pTD" target="_blank" rel="noopener">Get notified on Signal</a></p>
           </div>
         </article>
       </div>
@@ -531,8 +556,16 @@
 
       <!-- Posts to worker/index.js, which emails the entry to us. main.js sends it in the background
            and shows the result here; without JS the browser posts it and comes back with ?sent=1. -->
-      <form class="form-card" id="start-form" action="/api/start-group" method="post">
-        <h3>Tell us about you</h3>
+      <!-- Collapsed by default (like the Tübingen contact form); main.js opens it after a no-JS post. -->
+      <details class="form-card form-toggle">
+        <summary>
+          <span class="form-toggle-title">
+            <strong>Tell us about you</strong>
+            <span>Open the form &middot; takes 1 minute</span>
+          </span>
+          <span class="form-toggle-icon" aria-hidden="true"></span>
+        </summary>
+      <form class="form-body" id="start-form" action="/api/start-group" method="post">
 
         <div class="field-row">
         <div class="field">
@@ -581,7 +614,7 @@
 
         <div class="field">
           <label for="sg-why">What motivates you to start a group?</label>
-          <textarea id="sg-why" name="Motivation" rows="3" required maxlength="4000"></textarea>
+          <textarea id="sg-why" name="Motivation" rows="2" required maxlength="4000"></textarea>
         </div>
 
         <!-- hidden from people; bots that fill it are ignored -->
@@ -597,50 +630,7 @@
           Or write to <a href="mailto:hello@aisafetykaiserslautern.org">hello@aisafetykaiserslautern.org</a>.
         </p>
       </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── Join ───────────────────────── -->
-  <section class="section section-accent" id="join">
-    <div class="wrap join-inner">
-      <p class="eyebrow">Get involved</p>
-      <h2 class="section-title">Stay in touch</h2>
-      <p class="section-lede">We announce events in our Signal group.</p>
-
-      <div class="join-grid">
-        <a class="join-card" href="https://signal.group/#CjQKIJROV0Q8fZuMW2Enf7PxpZ2H-xfHYSIsQhwiZB-bFXzsEhBNLP00tWnXSX2ShsEN9pTD" target="_blank" rel="noopener">
-          <span class="join-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5Z"/></svg>
-          </span>
-          <span class="join-body">
-            <strong>Signal group</strong>
-            <span>Announcements and everyday discussion</span>
-          </span>
-          <span class="join-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-        <a class="join-card" href="https://www.linkedin.com/company/ai-safety-kaiserslautern" target="_blank" rel="noopener">
-          <span class="join-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V17M8 7.2v.1M12 17v-3.6c0-1.6 1-2.6 2.3-2.6s2.2 1 2.2 2.6V17"/></svg>
-          </span>
-          <span class="join-body">
-            <strong>LinkedIn</strong>
-            <span>Follow what the group is up to</span>
-          </span>
-          <span class="join-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-        <a class="join-card" href="mailto:hello@aisafetykaiserslautern.org">
-          <span class="join-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 3.2a8.8 8.8 0 1 0 5.2 15.9"/><circle cx="12" cy="12" r="3.4"/><path d="M15.4 12v1.6a2.6 2.6 0 0 0 5.2 0V12a8.6 8.6 0 0 0-2.6-6.2"/></svg>
-          </span>
-          <span class="join-body">
-            <strong>Email us</strong>
-            <span>Questions, ideas, or offers to help</span>
-          </span>
-          <span class="join-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      </details>
       </div>
     </div>
   </section>
@@ -812,7 +802,6 @@
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#vision">Vision</a></li>
         <li><a href="#resources">Resources</a></li>
-        <li><a href="#join">Join us</a></li>
       </ul>
     </div>
 
@@ -853,7 +842,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20261104"></script>
-<script src="assets/js/hero-net.js?v=20261118r" defer></script>
+<script src="assets/js/main.js?v=20261119"></script>
+<script src="assets/js/hero-net.js?v=20261119" defer></script>
 </body>
 </html>

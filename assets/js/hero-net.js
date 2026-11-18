@@ -1,7 +1,8 @@
 /* Skyline strip at the top of the hero: Kaiserslautern landmarks with a network inside them.
-   Nodes run up inside each building (Stiftskirche, Fruchthalle, Rathaus, Betzenberg
-   floodlights, houses); the street line links the buildings. 1 red dot tours the city:
-   up each building and back down, then along the street to the next one.
+   Historic buildings (Stiftskirche, Fruchthalle, Rathaus, Betzenberg) and the research
+   cluster (RPTU, Fraunhofer, MPI-SWS, DFKI). Nodes run up inside each building; the street
+   line links them. 1 red dot tours the city: up each building and back down, then along
+   the street to the next one. Hovering a building highlights it and shows its name.
    The buildings keep their proportions; the gaps between them stretch to the page width.
    Simplified silhouettes, drawn in code. Plain canvas, no libraries.
    - Colours follow the page: dark palette when the body background is dark.
@@ -25,20 +26,30 @@
     [[850,0],[850,55],[880,80],[910,55],[910,0]],
     [[950,0],[950,65],[990,65],[990,0]],
     [[1060,0],[1080,65],[1110,80],[1110,220],[1128,220],[1128,83],[1250,83],[1250,220],[1268,220],[1268,80],[1300,65],[1320,0]],  // Betzenberg
-    // DFKI: a modern research building (stylised, not the real facade): sloped roof,
-    // cantilevered upper volume, antenna
-    [[1380,0],[1380,95],[1400,95],[1400,140],[1520,162],[1520,122],[1548,122],[1548,72],[1520,72],[1520,0]]
+    // research cluster, stylised modern buildings (not the real facades)
+    [[1600,0],[1600,110],[1700,110],[1700,170],[1740,170],[1740,110],[1760,110],[1760,0]],              // RPTU
+    [[1810,0],[1810,95],[1835,108],[1865,115],[1895,113],[1920,105],[1940,92],[1940,0]],                // Fraunhofer
+    [[1990,0],[1990,130],[1980,130],[1980,140],[2100,140],[2100,130],[2090,130],[2090,0]],              // MPI-SWS
+    [[2140,0],[2140,95],[2160,95],[2160,140],[2280,162],[2280,122],[2308,122],[2308,72],[2280,72],[2280,0]]  // DFKI
   ];
+  // names shown on hover (null: no label)
+  var NAMES = [null, 'Stiftskirche', 'Fruchthalle', 'Rathaus', null, null, 'Fritz-Walter-Stadion',
+               'RPTU', 'Fraunhofer IESE and ITWM', 'MPI-SWS', 'DFKI'];
   // extra lines inside buildings: [building, x1, y1, x2, y2]
   var DETAILS = [
-    [7, 1385, 28, 1515, 28], [7, 1385, 52, 1515, 52], [7, 1385, 76, 1515, 76],   // window bands
-    [7, 1405, 100, 1515, 100], [7, 1405, 122, 1515, 122],
-    [7, 1524, 97, 1544, 97],                                                     // cantilever band
-    [7, 1452, 150, 1452, 192], [7, 1446, 180, 1458, 180]                         // antenna
+    [7, 1605, 32, 1755, 32], [7, 1605, 64, 1755, 64], [7, 1605, 92, 1755, 92],   // RPTU floors
+    [7, 1705, 140, 1735, 140],
+    [8, 1835, 10, 1835, 100], [8, 1860, 10, 1860, 106], [8, 1885, 10, 1885, 106], [8, 1910, 10, 1910, 100],  // Fraunhofer fins
+    [9, 1995, 40, 2085, 40], [9, 1995, 80, 2085, 80], [9, 1995, 115, 2085, 115], [9, 2040, 10, 2040, 128],  // MPI-SWS grid
+    [10, 2145, 28, 2275, 28], [10, 2145, 52, 2275, 52], [10, 2145, 76, 2275, 76],  // DFKI window bands
+    [10, 2165, 100, 2275, 100], [10, 2165, 122, 2275, 122],
+    [10, 2284, 97, 2304, 97],                                                      // cantilever band
+    [10, 2212, 150, 2212, 192], [10, 2206, 180, 2218, 180]                         // antenna
   ];
   // columns of nodes inside buildings: x, top height, count
   var COLS = [[145,45,2],[245,185,4],[345,195,4],[480,80,2],[560,80,2],[745,290,7],
-              [880,45,2],[970,45,2],[1119,200,4],[1185,55,2],[1259,200,4],[1462,130,4]];
+              [880,45,2],[970,45,2],[1119,200,4],[1185,55,2],[1259,200,4],
+              [1720,160,4],[1875,100,3],[2040,125,4],[2222,130,4]];
   var ARCHES = [445, 474, 503, 532, 561];               // Fruchthalle arcade, inside 430..610
 
   function buildingOf(x) {
@@ -50,7 +61,7 @@
   }
 
   var w = 0, h = 0, dpr = 1, last = 0, running = false, visible = true, raf = 0, palette;
-  var u = 1, centres = [], route = [], pos = 0;
+  var u = 1, centres = [], route = [], pos = 0, bounds = [], hover = -1;
 
   function setPalette() {
     var m = getComputedStyle(document.body).backgroundColor.match(/\d+(\.\d+)?/g);
@@ -80,9 +91,23 @@
     var left = Math.min(56, w * 0.05);
     var right = w;
     if (story) right = story.getBoundingClientRect().left - rect.left - 56;
-    var mids = BUILDINGS.map(function (o) { return (o[0][0] + o[o.length - 1][0]) / 2; });
-    var first = mids[0], lastMid = mids[mids.length - 1];
-    centres = mids.map(function (c) { return left + (right - left) * (c - first) / (lastMid - first); });
+    // equal gaps between buildings: measure each building's drawn width, share the rest
+    var k = u * WIDEN, spans = BUILDINGS.map(function (o) {
+      var xs = o.map(function (p) { return p[0]; });
+      return { lo: Math.min.apply(null, xs), hi: Math.max.apply(null, xs), c: (o[0][0] + o[o.length - 1][0]) / 2 };
+    });
+    var used = spans.reduce(function (t, sp) { return t + (sp.hi - sp.lo) * k; }, 0);
+    var gap = Math.max(4, (right - left - used) / (spans.length - 1)), at = left;
+    centres = spans.map(function (sp) {
+      var centre = at + (sp.c - sp.lo) * k;
+      at += (sp.hi - sp.lo) * k + gap;
+      return centre;
+    });
+    // on-screen box of each building, for the hover labels
+    bounds = BUILDINGS.map(function (o, bi) {
+      var xs = o.map(function (p) { return X(p[0], bi); }), ys = o.map(function (p) { return p[1]; });
+      return { l: Math.min.apply(null, xs), r: Math.max.apply(null, xs), top: Y(Math.max.apply(null, ys)) };
+    });
     buildRoute();
   }
 
@@ -122,6 +147,9 @@
     ctx.strokeStyle = 'rgba(' + ink + ',' + (0.7 * k).toFixed(3) + ')';
     ctx.lineWidth = 1.1;
     BUILDINGS.forEach(function (o, bi) {
+      var on = bi === hover;
+      ctx.strokeStyle = 'rgba(' + ink + ',' + ((on ? 1 : 0.7) * k).toFixed(3) + ')';
+      ctx.lineWidth = on ? 1.8 : 1.1;
       ctx.beginPath();
       o.forEach(function (p, i) { i ? ctx.lineTo(X(p[0], bi), Y(p[1])) : ctx.moveTo(X(p[0], bi), Y(p[1])); });
       ctx.stroke();
@@ -198,4 +226,44 @@
     .observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   var mq = window.matchMedia('(prefers-color-scheme: dark)');
   if (mq.addEventListener) mq.addEventListener('change', function () { setPalette(); if (!running) draw(); });
+
+  // hover: highlight the building under the pointer and show its name below the street
+  var row = canvas.parentElement;
+  var tip = document.createElement('span');
+  tip.className = 'skyline-tip';
+  tip.setAttribute('aria-hidden', 'true');
+  row.appendChild(tip);
+  row.addEventListener('pointermove', function (e) {
+    var x = e.clientX - canvas.getBoundingClientRect().left, found = -1;
+    for (var b = 0; b < bounds.length; b++) {
+      if (NAMES[b] && x >= bounds[b].l - 6 && x <= bounds[b].r + 6) { found = b; break; }
+    }
+    if (found !== hover) {
+      hover = found;
+      if (found >= 0) {
+        tip.textContent = NAMES[found];
+        tip.style.left = ((bounds[found].l + bounds[found].r) / 2) + 'px';
+        tip.classList.add('is-on');
+      } else {
+        tip.classList.remove('is-on');
+      }
+      if (!running) draw();
+    }
+  });
+  row.addEventListener('pointerleave', function () {
+    hover = -1; tip.classList.remove('is-on'); if (!running) draw();
+  });
+
+  // "About the skyline": close the panel on a click anywhere outside it, or on Escape
+  if (story) {
+    document.addEventListener('click', function (e) {
+      if (story.open && !story.contains(e.target)) story.open = false;
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && story.open) {
+        story.open = false;
+        story.querySelector('summary').focus();
+      }
+    });
+  }
 })();

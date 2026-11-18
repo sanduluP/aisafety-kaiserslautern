@@ -131,6 +131,9 @@
     var sent = new URLSearchParams(window.location.search).get('sent');
     if (sent === '1') showStatus(true, 'Thanks! We got your message and will get back to you.');
     if (sent === '0') showStatus(false, failText);
+    // the form sits in a collapsed <details>; open it so the result is visible
+    var startToggle = startForm.closest('details');
+    if (startToggle && (sent === '1' || sent === '0')) startToggle.open = true;
 
     startForm.addEventListener('submit', function (e) {
       e.preventDefault();
