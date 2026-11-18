@@ -58,7 +58,7 @@
   }
 
   var w = 0, h = 0, dpr = 1, last = 0, running = false, visible = true, raf = 0, palette;
-  var u = 1, centres = [], route = [], pos = 0, bounds = [], hover = -1;
+  var u = 1, kx = 1, centres = [], route = [], pos = 0, bounds = [], hover = -1;
 
   function setPalette() {
     var m = getComputedStyle(document.body).backgroundColor.match(/\d+(\.\d+)?/g);
@@ -72,7 +72,7 @@
   function X(x, bIdx) {
     var b = bIdx === undefined ? buildingOf(x) : bIdx, o = BUILDINGS[b];
     var c = (o[0][0] + o[o.length - 1][0]) / 2;
-    return centres[b] + (x - c) * u * WIDEN;
+    return centres[b] + (x - c) * kx;
   }
   function Y(y) { return h - 1.5 - y * u; }
 
@@ -85,19 +85,26 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     u = (h - 4) / 320;
     // spread the buildings from the left edge to just before the "About the skyline" link
+    // start in line with the page content (logo and headline), not at the screen edge
     var left = Math.min(56, w * 0.05);
+    var inner = canvas.parentElement.querySelector('.skyline-row-inner');
+    if (inner) left = inner.getBoundingClientRect().left - rect.left + parseFloat(getComputedStyle(inner).paddingLeft || 0);
     var right = w;
     if (story) right = story.getBoundingClientRect().left - rect.left - 56;
     // equal gaps between buildings: measure each building's drawn width, share the rest
-    var k = u * WIDEN, spans = BUILDINGS.map(function (o) {
+    var spans = BUILDINGS.map(function (o) {
       var xs = o.map(function (p) { return p[0]; });
       return { lo: Math.min.apply(null, xs), hi: Math.max.apply(null, xs), c: (o[0][0] + o[o.length - 1][0]) / 2 };
     });
-    var used = spans.reduce(function (t, sp) { return t + (sp.hi - sp.lo) * k; }, 0);
-    var gap = Math.max(4, (right - left - used) / (spans.length - 1)), at = left;
+    // buildings are drawn WIDEN x wider than to scale; on narrow screens they get narrower
+    // so that at least MIN_GAP stays between neighbours
+    var MIN_GAP = 10, design = spans.reduce(function (t, sp) { return t + (sp.hi - sp.lo); }, 0);
+    kx = Math.min(u * WIDEN, (right - left - MIN_GAP * (spans.length - 1)) / design);
+    var used = design * kx;
+    var gap = (right - left - used) / (spans.length - 1), at = left;
     centres = spans.map(function (sp) {
-      var centre = at + (sp.c - sp.lo) * k;
-      at += (sp.hi - sp.lo) * k + gap;
+      var centre = at + (sp.c - sp.lo) * kx;
+      at += (sp.hi - sp.lo) * kx + gap;
       return centre;
     });
     // on-screen box of each building, for the hover labels

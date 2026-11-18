@@ -404,7 +404,12 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 }
 
 /* skyline strip at the top of the hero (hero-net.js): full width, quiet, informative */
-.skyline-row { position: relative; height: 52px; margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem); }
+.skyline-row {
+  position: relative;
+  height: 52px;
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+  background: var(--bg-alt);   /* its own band, set apart from the hero below */
+}
 .skyline-row .hero-net { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .skyline-row-inner { position: relative; height: 100%; display: flex; justify-content: flex-end; align-items: flex-end; padding-bottom: .35rem; }
 
@@ -415,7 +420,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   cursor: pointer;
   padding: .15rem .55rem;
   border-radius: 999px;
-  background: var(--bg);
+  background: var(--bg-alt);
   color: var(--muted);
 }
 .skyline-story summary:hover,
