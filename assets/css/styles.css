@@ -1188,3 +1188,30 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
   .footer-grid { grid-template-columns: 1fr; }
   .brand-mark { height: 34px; }
 }
+
+/* ───────────── About us: team cards ───────────── */
+.team-grid {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem 1.5rem;
+  max-width: 860px;
+}
+.team-card { text-align: center; }
+.team-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto .9rem;
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--line-strong), 0 6px 18px rgba(15, 30, 60, .12);
+  transition: transform .25s ease;
+}
+.team-card:hover .team-photo { transform: translateY(-3px); }
+.team-name { font-size: 1.1rem; margin: 0 0 .2rem; }
+.team-role { margin: 0; color: var(--muted); font-size: .95rem; }
+@media (prefers-reduced-motion: reduce) { .team-photo { transition: none; } }
