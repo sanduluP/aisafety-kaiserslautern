@@ -1215,3 +1215,6 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .team-name { font-size: 1.1rem; margin: 0 0 .2rem; }
 .team-role { margin: 0; color: var(--muted); font-size: .95rem; }
 @media (prefers-reduced-motion: reduce) { .team-photo { transition: none; } }
+
+/* Start a group: collapsed by default, same toggle style as the theory of change */
+.sg-details > .split { margin-top: .5rem; }

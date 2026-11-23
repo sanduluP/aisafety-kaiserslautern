@@ -127,6 +127,20 @@
   }
   var failText = 'Sorry, that did not go through. Please email us at ' + MAIL + '.';
 
+  /* The section starts collapsed. Open it when a link points at it or a form post comes back. */
+  var startDetails = document.getElementById('start-details');
+  function openStart() {
+    if (startDetails && location.hash === '#start-a-group') startDetails.open = true;
+  }
+  if (startDetails) {
+    if (new URLSearchParams(window.location.search).has('sent')) startDetails.open = true;
+    openStart();
+    window.addEventListener('hashchange', openStart);
+    document.querySelectorAll('a[href="#start-a-group"]').forEach(function (a) {
+      a.addEventListener('click', function () { startDetails.open = true; });
+    });
+  }
+
   if (startForm) {
     var sent = new URLSearchParams(window.location.search).get('sent');
     if (sent === '1') showStatus(true, 'Thanks! We got your message and will get back to you.');
