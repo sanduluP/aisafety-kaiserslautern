@@ -600,6 +600,34 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .orbit-dot { z-index: 3; }
 @media (prefers-reduced-motion: reduce) { .orbit-dot, .hero-art .blade { animation: none; } }
 .hero-art img { display: block; width: 100%; height: auto; }
+/* centre wordmark (index.html, .hero-wordmark): navy text, green AI in square brackets.
+   The brackets close in once on load. Dark mode: white text, same green. */
+.hero-wordmark { display: block; width: 100%; height: auto; aspect-ratio: 1080 / 1078; }
+.hero-wordmark text { font-family: Arial, Helvetica, "Liberation Sans", sans-serif; stroke: none; }   /* the global svg rule strokes */
+.hero-wordmark .wm-ink { fill: #012D5E; }
+.hero-wordmark .wm-ai { fill: #92D050; }
+.hero-wordmark .wm-bracket {
+  fill: none;
+  stroke: #012D5E;   /* same navy as the text, so only the AI is green */
+  stroke-width: 7;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  /* backwards, not both: once the animation ends the brackets rest in their normal, visible style */
+  animation: wm-bracket-in .9s cubic-bezier(.2, .8, .2, 1) .3s backwards;
+}
+.hero-wordmark .wm-bracket-l { --from: -18px; }
+.hero-wordmark .wm-bracket-r { --from: 18px; }
+@keyframes wm-bracket-in {
+  from { opacity: 0; transform: translateX(var(--from)); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-wordmark .wm-bracket { animation: none; } }
+:root[data-theme="dark"] .hero-wordmark .wm-ink { fill: #FFFFFF; }
+:root[data-theme="dark"] .hero-wordmark .wm-bracket { stroke: #FFFFFF; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-wordmark .wm-ink { fill: #FFFFFF; }
+  :root:not([data-theme="light"]) .hero-wordmark .wm-bracket { stroke: #FFFFFF; }
+}
 .img-on-dark { display: none !important; }
 :root[data-theme="dark"] .img-on-light { display: none !important; }
 :root[data-theme="dark"] .img-on-dark { display: block !important; }

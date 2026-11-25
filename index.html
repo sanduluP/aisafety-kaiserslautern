@@ -12,7 +12,7 @@
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=20261123b">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261125c">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -141,11 +141,18 @@
       <div class="hero-art">
         <!-- layered: the wordmark (light/dark copy) plus 6 blades; each blade pops out while the
              green dot runs along its edge (styles.css, .blade). Layers from the launch slide. -->
-        <img class="img-on-light" src="assets/img/hero/wwd-base-light.webp"
-             alt="What AI Safety Kaiserslautern offers: Learn, Network, Reading group, Workshop, Talk and meet-up, AI Movie night"
-             width="1080" height="1078" loading="eager" fetchpriority="high">
-        <img class="img-on-dark" src="assets/img/hero/wwd-base-dark.webp" alt=""
-             width="1080" height="1078" loading="eager" aria-hidden="true">
+        <!-- Centre wordmark as SVG: the shared "AI" of "AI Safety" and "K[AI]serslautern", framed by
+             square brackets. Same 1080x1078 grid and positions as the old wwd-base-*.webp images
+             (kept in assets/img/hero), so the blades still line up. Colours: styles.css, .hero-wordmark. -->
+        <svg class="hero-wordmark" viewBox="0 0 1080 1078" role="img"
+             aria-label="What AI Safety Kaiserslautern offers: Learn, Network, Reading group, Workshop, Talk and meet-up, AI Movie night">
+          <text class="wm-ink" x="278" y="583" font-size="39">K</text>
+          <path class="wm-bracket wm-bracket-l" d="M331 497H315V600H331"/>
+          <text class="wm-ai" x="338" y="590" font-size="116" font-weight="700" textLength="116" lengthAdjust="spacingAndGlyphs">AI</text>
+          <path class="wm-bracket wm-bracket-r" d="M459 497H475V600H459"/>
+          <text class="wm-ink" x="492" y="525" font-size="39">SAFETY</text>
+          <text class="wm-ink" x="492" y="583" font-size="39" textLength="306" lengthAdjust="spacingAndGlyphs">SERSLAUTERN</text>
+        </svg>
         <img class="blade blade-learn" src="assets/img/hero/wwd-blade-1.webp" alt="" width="1080" height="1078" aria-hidden="true">
         <img class="blade blade-network" src="assets/img/hero/wwd-blade-2.webp" alt="" width="1080" height="1078" aria-hidden="true">
         <img class="blade blade-workshop" src="assets/img/hero/wwd-blade-3.webp" alt="" width="1080" height="1078" aria-hidden="true">
