@@ -12,7 +12,7 @@
 <link rel="icon" href="/assets/img/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=20261125c">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261126a">
 
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
@@ -268,30 +268,50 @@
       <p class="eyebrow">Events</p>
       <h2 class="section-title">What&rsquo;s <em class="accent">coming up</em></h2>
 
-      <ul class="event-list">
-        <li class="event">
-          <time class="event-date" datetime="2026-11-25T15:30+01:00">
-            <span class="event-day">25</span>
-            <span class="event-month">Nov</span>
-          </time>
-          <div class="event-body">
-            <h3>Introduction to AI Safety: Talk with Safe AI Germany</h3>
-            <p class="event-meta">15:30&ndash;18:30 &middot; DFKI, Trippstadter Stra&szlig;e 122 &middot; Free</p>
-            <p>Johannes Koch (Safe AI Germany) on how fast AI is progressing, the main safety research directions, and how you can get involved. Beginner-friendly, followed by refreshments and networking. Language: English.</p>
-            <p class="event-note">Can&rsquo;t make it? Cancel on Luma with your registration email.</p>
-          </div>
-          <div class="event-actions">
-            <a class="btn btn-brand btn-sm" href="https://luma.com/ecqov39q" target="_blank" rel="noopener">Register</a>
-            <a class="btn btn-ghost btn-sm" href="https://luma.com/ecqov39q" target="_blank" rel="noopener"
-               aria-label="Manage or cancel your registration on Luma">Manage or cancel</a>
-          </div>
-        </li>
-      </ul>
+      <!-- No dated event yet: invite speakers. When an event is announced, replace this block with an
+           <ul class="event-list"> entry (see the past events below for the markup). -->
+      <div class="cfs">
+        <div class="cfs-copy">
+          <p class="cfs-kicker">Call for speakers</p>
+          <h3>Present your research to our community</h3>
+          <p class="cfs-lead">
+            We have no date to announce yet. In the meantime, we are looking for people who want to share
+            their work with students, researchers and prospective fellows of our planned
+            Technical AI Safety Fellowship.
+          </p>
+          <ul class="cfs-formats">
+            <li>
+              <strong>Reading group</strong>
+              <span>Present a research paper in 30 minutes, then lead the discussion.</span>
+            </li>
+            <li>
+              <strong>Meetup talk</strong>
+              <span>Give a talk at one of our meetups, for an audience that is curious about AI safety.</span>
+            </li>
+          </ul>
+          <p class="cfs-note">Not sure which format fits? Send us a topic idea and we will work it out together.</p>
+        </div>
+        <div class="cfs-actions">
+          <a class="btn btn-brand" href="mailto:hello@aisafetykaiserslautern.org?subject=Speaker%20proposal">Propose a topic</a>
+          <a class="btn btn-ghost" href="https://signal.group/#CjQKIJROV0Q8fZuMW2Enf7PxpZ2H-xfHYSIsQhwiZB-bFXzsEhBNLP00tWnXSX2ShsEN9pTD" target="_blank" rel="noopener">Join the Signal group</a>
+        </div>
+      </div>
 
       <!-- Past events: move an event's <li> in here once its date has passed. -->
       <details class="past-events">
         <summary>Past events</summary>
         <ul class="event-list">
+          <li class="event event-past">
+            <time class="event-date" datetime="2026-11-25T15:30+01:00">
+              <span class="event-day">25</span>
+              <span class="event-month">Nov</span>
+            </time>
+            <div class="event-body">
+              <h3>Introduction to AI Safety: Talk with Safe AI Germany</h3>
+              <p class="event-meta">15:30&ndash;18:30 &middot; DFKI, Kaiserslautern</p>
+              <p>Johannes Koch (Safe AI Germany) on how fast AI is progressing, the main safety research directions and how to get involved. Mohaddeseh Tabrizian on sandboxing AI agents. The evening closed with a pizza quiz and networking.</p>
+            </div>
+          </li>
           <li class="event event-past">
             <time class="event-date" datetime="2026-11-12T17:30+01:00">
               <span class="event-day">12</span>

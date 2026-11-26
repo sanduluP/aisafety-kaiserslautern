@@ -824,6 +824,32 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
 .event-past .event-date { background: var(--bg-alt); color: var(--muted); }
 .event-past .event-meta { color: var(--muted); }
 
+/* ---------- Call for speakers (Events section, while no dated event is listed) ---------- */
+.cfs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem 2.5rem;
+  align-items: center;
+  padding: 1.75rem 1.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.cfs-kicker { margin: 0 0 .35rem; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.cfs h3 { margin-bottom: .5rem; }
+.cfs-lead { color: var(--ink-soft); max-width: 62ch; margin-bottom: 1.1rem; }
+.cfs-formats { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .75rem; }
+.cfs-formats li { display: grid; gap: .1rem; padding-left: .9rem; border-left: 2px solid var(--line-strong); }
+.cfs-formats strong { color: var(--ink); }
+.cfs-formats span { font-size: .93rem; color: var(--muted); }
+.cfs-note { margin: 0; font-size: .88rem; color: var(--muted); }
+.cfs-actions { display: flex; flex-direction: column; gap: .6rem; }
+@media (max-width: 760px) {
+  .cfs { grid-template-columns: 1fr; padding: 1.4rem 1.25rem; }
+  .cfs-actions { flex-direction: row; flex-wrap: wrap; }
+}
+
 /* ---------- Theory of change ---------- */
 
 .toc-figure {
